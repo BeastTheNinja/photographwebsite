@@ -1,6 +1,7 @@
 import { Header } from "./component/header";
 import LogoImage from "../../../public/MorsLogo.png";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const navItems = [
     { href: "/", label: "Hjem" },
@@ -21,6 +22,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             />
             <main id="main-content">{children}</main>
             <Analytics />
+            <SpeedInsights />
         </div>
     );
 };
