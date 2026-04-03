@@ -10,6 +10,7 @@ export default function HeroSection() {
                     src={LogoImage}
                     alt=""
                     fill
+                    loading="eager"
                     sizes="100vw"
                     className="object-cover"
                     priority
