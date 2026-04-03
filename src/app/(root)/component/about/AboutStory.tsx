@@ -14,11 +14,11 @@ export default function AboutStory() {
                 <div className="grid max-w-6xl grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16 mx-auto">
                     <div className="relative order-2 lg:order-1">
                         <div className="absolute -inset-4 bg-linear-to-r from-indigo-600 to-purple-600 rounded-3xl blur-2xl opacity-20" />
-                        <div className="relative overflow-hidden rounded-4xl border border-white/10 bg-white shadow-2xl dark:bg-zinc-900">
+                        <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white shadow-2xl dark:bg-zinc-900">
                             <Image
                                 src={portraitImage}
                                 alt="Annika foran kamera med et roligt portrætudtryk"
-                                className="w-full h-130 object-cover"
+                                className="w-full h-[32.5rem] object-cover"
                                 placeholder="blur"
                                 loading="lazy"
                             />

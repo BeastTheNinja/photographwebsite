@@ -30,10 +30,11 @@ export default function Error({ error, reset }: ErrorProps) {
                     Der opstod en uventet fejl på serveren.
                 </p>
 
-                <p className="text-sm text-gray-500 dark:text-gray-500 mb-8">
-                    {error.message && `Fejl: ${error.message}`}
-                    {error.digest && ` (ID: ${error.digest})`}
-                </p>
+                {error.digest ? (
+                    <p className="text-sm text-gray-500 dark:text-gray-500 mb-8">
+                        Reference-ID: {error.digest}
+                    </p>
+                ) : null}
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
                     <button

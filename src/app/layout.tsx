@@ -1,19 +1,15 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import { getSiteUrl } from "./lib/siteUrl";
 import "./globals.css";
 
 const siteName = "DinFotografAnninka";
 const siteDescription =
   "Fotograf i Brønderslev, Nordjylland. Specialiseret i portrætter, familiefotografering, bryllupsfotografering, naturfotografering og konfirmationsfotografering.";
-const defaultSiteUrl = "http://localhost:3000";
-const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL?.trim() || defaultSiteUrl).replace(/\/$/, "");
+const siteUrl = getSiteUrl();
 
 function getMetadataBase() {
-  try {
-    return new URL(siteUrl);
-  } catch {
-    return new URL(defaultSiteUrl);
-  }
+  return new URL(siteUrl);
 }
 
 const structuredData = {

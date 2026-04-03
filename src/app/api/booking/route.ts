@@ -106,7 +106,7 @@ function getAllowedOrigins() {
         .map((origin) => origin.trim())
         .filter(Boolean);
 
-    const primarySiteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? '').trim();
+    const primarySiteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? '').trim().replace(/\/$/, '');
     const vercelUrl = (process.env.VERCEL_URL ?? '').trim();
     const previewUrl = vercelUrl ? `https://${vercelUrl}` : '';
 
@@ -266,10 +266,10 @@ export async function POST(request: Request) {
     } catch (error) {
         const rawMessage = error instanceof Error ? error.message : String(error);
         console.error('[booking] email send failed:', rawMessage);
-        const isBadCredentials = /535[-\s]5\.7\.8|BadCredentials/i.test(rawMessage);
-        const clientMessage = isBadCredentials
-            ? 'SMTP login fejlede. Kontakt venligst webstedsejeren.'
-            : 'Der opstod en fejl ved afsendelse af mail. Prøv venligst igen senere.';
-        return jsonWithCors({ error: clientMessage }, { status: 500 }, origin);
+        return jsonWithCors(
+            { error: 'Der opstod en fejl ved afsendelse af mail. Prøv venligst igen senere.' },
+            { status: 500 },
+            origin,
+        );
     }
 }

@@ -48,12 +48,12 @@ function validateBookingForm(data: BookingFormData): FieldErrors {
         errors.time = 'Vælg et tidspunkt.';
     }
 
-    if (data.location.length > 120) {
-        errors.location = 'Lokation må højst være 120 tegn.';
+    if (data.location.length > 160) {
+        errors.location = 'Lokation må højst være 160 tegn.';
     }
 
-    if (data.message.length > 1000) {
-        errors.message = 'Beskeden må højst være 1000 tegn.';
+    if (data.message.length > 3000) {
+        errors.message = 'Beskeden må højst være 3000 tegn.';
     }
 
     return errors;

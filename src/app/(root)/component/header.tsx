@@ -34,7 +34,7 @@ export function Header({ logoUrl, title, navItems }: HeaderProps) {
                 <div className="flex items-center justify-between gap-4">
                     <Link href="/" className="flex items-center gap-3">
                         {logoUrl ? (
-                            <div className="relative h-17.5 w-35 md:h-25 md:w-50 overflow-hidden">
+                            <div className="relative h-[4.375rem] w-[8.75rem] md:h-[6.25rem] md:w-[12.5rem] overflow-hidden">
                                 {!isLogoLoaded ? (
                                     <div
                                         aria-hidden="true"
@@ -52,7 +52,7 @@ export function Header({ logoUrl, title, navItems }: HeaderProps) {
                                     placeholder="blur"
                                     blurDataURL={LOGO_BLUR_DATA_URL}
                                     onLoad={() => setIsLogoLoaded(true)}
-                                    className={`h-17.5 w-35 object-contain transition-all duration-300 md:h-25 md:w-50 ${isLogoLoaded ? 'blur-0 scale-100 opacity-100' : 'blur-sm scale-[1.02] opacity-80'}`}
+                                    className={`h-[4.375rem] w-[8.75rem] object-contain transition-all duration-300 md:h-[6.25rem] md:w-[12.5rem] ${isLogoLoaded ? 'blur-0 scale-100 opacity-100' : 'blur-sm scale-[1.02] opacity-80'}`}
                                 />
                             </div>
                         ) : (
