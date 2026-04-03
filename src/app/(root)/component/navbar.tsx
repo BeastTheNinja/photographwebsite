@@ -11,7 +11,7 @@ type NavBarProps = {
 
 export const NavBar = ({ items }: NavBarProps) => {
     return (
-        <nav aria-label="Main navigation">
+        <nav aria-label="Hovednavigation">
             <ul>
                 {items.map((item) => (
                     <li key={item.href} className="shrink-0">
