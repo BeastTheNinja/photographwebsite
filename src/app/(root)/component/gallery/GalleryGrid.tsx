@@ -1,3 +1,5 @@
+'use client';
+
 import GalleryCard from './GalleryCard';
 import type { GalleryImage } from './types';
 

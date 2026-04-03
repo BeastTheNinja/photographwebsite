@@ -1,3 +1,5 @@
+'use client';
+
 interface GalleryCategoryFilterProps {
     categories: string[];
     selectedCategory: string;

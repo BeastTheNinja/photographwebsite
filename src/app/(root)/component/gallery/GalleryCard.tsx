@@ -1,3 +1,5 @@
+'use client';
+
 import GalleryImage from './GalleryImage';
 import type { GalleryImage as GalleryImageType } from './types';
 
