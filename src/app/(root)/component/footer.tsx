@@ -45,21 +45,21 @@ export function Footer() {
                     <div>
                         <h3 className="mb-6 text-lg text-white">Juridisk</h3>
                         <div className="mb-6 flex flex-col gap-3">
-                            <a href="#" className="transition-colors hover:text-white">
+                            <span className="transition-colors hover:text-white">
                                 Privatlivspolitik
-                            </a>
-                            <a href="#" className="transition-colors hover:text-white">
+                            </span>
+                            <span className="transition-colors hover:text-white">
                                 Handelsbetingelser
-                            </a>
+                            </span>
                         </div>
                     </div>
                 </div>
 
                 <div className="mt-12 border-t border-white/10 pt-8 text-center text-sm">
                     <p>Copyright 2026 DinFotografAnninka. Alle rettigheder forbeholdes.</p>
-                    <a href="/admin/login" className="mt-2 inline-block text-xs text-white/40 transition-colors hover:text-white/60">
+                    <Link href="/admin/login" className="mt-2 inline-block text-xs text-white/40 transition-colors hover:text-white/60">
                         Admin Login
-                    </a>
+                    </Link>
                 </div>
             </div>
         </footer>

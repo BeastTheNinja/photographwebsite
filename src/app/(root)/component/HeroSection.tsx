@@ -4,12 +4,14 @@ import LogoImage from "../../../../public/MorsLogo.png";
 
 export default function HeroSection() {
     return (
-        <section className="relative h-175 flex items-center justify-center overflow-hidden">
+        <section className="relative h-[700px] flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0">
                 <Image
                     src={LogoImage}
                     alt="Logo"
-                    className="w-full h-full object-cover"
+                    fill
+                    sizes="100vw"
+                    className="object-cover"
                     priority
                 />
                 <div className="absolute inset-0 bg-linear-to-br from-black/60 via-black/50 to-purple-900/40" />
