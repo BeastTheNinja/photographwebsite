@@ -37,7 +37,7 @@ export default function ContactCTA() {
                 <ul className="space-y-3 text-gray-600 dark:text-gray-300">
                     <li className="flex items-center gap-2">
                         <div className="w-2 h-2 bg-indigo-600 dark:bg-indigo-400 rounded-full"></div>
-                        Svardtid: Inden for 24 timer
+                        Svartid: Inden for 24 timer
                     </li>
                     <li className="flex items-center gap-2">
                         <div className="w-2 h-2 bg-indigo-600 dark:bg-indigo-400 rounded-full"></div>

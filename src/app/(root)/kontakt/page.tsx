@@ -14,10 +14,11 @@ import {
 export default function Contact() {
   const email = 'dinfotografannika@gmail.com';
   const phone = 'kommer snart'; // Placeholder, da telefonnummer ikke er tilgængeligt endnu
+  const phoneHref = ''; // Will be updated to normalized E.164 format, e.g. '+4540404040'
 
   const socialLinks = [
-    { label: 'TikTok', href: 'https://tiktok.com', icon: InstagramIcon },
-    { label: 'Facebook', href: 'https://www.facebook.com/Annika81larsen', icon: FacebookIcon },
+    { label: 'TikTok', href: 'https://tiktok.com', icon: <InstagramIcon className="w-7 h-7 text-white" /> },
+    { label: 'Facebook', href: 'https://www.facebook.com/Annika81larsen', icon: <FacebookIcon className="w-7 h-7 text-white" /> },
   ];
 
   return (
@@ -44,7 +45,7 @@ export default function Contact() {
 
               <div className="space-y-8">
                 <ContactInfoItem
-                  icon={EmailIcon}
+                  icon={<EmailIcon className="w-7 h-7 text-white" />}
                   title="Email"
                   content={
                     <a
@@ -57,11 +58,11 @@ export default function Contact() {
                 />
 
                 <ContactInfoItem
-                  icon={PhoneIcon}
+                  icon={<PhoneIcon className="w-7 h-7 text-white" />}
                   title="Telefon"
                   content={
                     <a
-                      href={`tel:${phone}`}
+                      href={phoneHref ? `tel:${phoneHref}` : undefined}
                       className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                     >
                       {phone}
@@ -70,7 +71,7 @@ export default function Contact() {
                 />
 
                 <ContactInfoItem
-                  icon={MapPinIcon}
+                  icon={<MapPinIcon className="w-7 h-7 text-white" />}
                   title="Beliggenhed"
                   content={
                     <>
@@ -82,7 +83,7 @@ export default function Contact() {
                 />
 
                 <ContactInfoItem
-                  icon={ClockIcon}
+                  icon={<ClockIcon className="w-7 h-7 text-white" />}
                   title="Åbningstider"
                   content={
                     <>
@@ -108,8 +109,9 @@ export default function Contact() {
         <FinalCTA
           email={email}
           phone={phone}
-          emailIcon={EmailIcon}
-          phoneIcon={PhoneIcon}
+          phoneHref={phoneHref}
+          emailIcon={<EmailIcon className="w-7 h-7" />}
+          phoneIcon={<PhoneIcon className="w-7 h-7 text-white" />}
         />
       </div>
     </div>
