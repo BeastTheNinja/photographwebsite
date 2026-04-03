@@ -17,7 +17,7 @@ export default function Error({ error, reset }: ErrorProps) {
         <div className="min-h-screen bg-white dark:bg-gray-900 flex items-center justify-center px-4">
             <div className="text-center max-w-2xl">
                 <div className="mb-8">
-                    <h1 className="text-7xl sm:text-8xl md:text-9xl lg:text-[150px] font-bold bg-linear-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">
+                    <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[150px] font-bold bg-linear-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">
                         500
                     </h1>
                 </div>

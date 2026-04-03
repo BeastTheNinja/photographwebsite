@@ -47,7 +47,7 @@ export default function Contact() {
         </div>
 
         <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {/* Contact Information */}
             <div>
               <h2 className="mb-10 bg-linear-to-r from-zinc-900 to-zinc-600 bg-clip-text text-2xl text-transparent sm:text-3xl md:text-4xl dark:from-zinc-100 dark:to-zinc-300">
