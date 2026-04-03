@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { Header } from "./component/header";
 import LogoImage from "../../../public/MorsLogo.png";
 import { Analytics } from "@vercel/analytics/next";
@@ -14,7 +15,7 @@ const navItems = [
     { href: "/kontakt", label: "Kontakt" },
 ];
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+const Layout = ({ children }: { children: ReactNode }) => {
     return (
         <ThemeProvider>
             <div className="flex min-h-screen flex-col">

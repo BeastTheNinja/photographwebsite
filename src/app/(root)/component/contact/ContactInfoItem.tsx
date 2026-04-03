@@ -1,7 +1,9 @@
+import type { ReactNode } from 'react';
+
 interface ContactInfoItemProps {
-    icon: React.ReactNode;
+    icon: ReactNode;
     title: string;
-    content: React.ReactNode;
+    content: ReactNode;
 }
 
 export default function ContactInfoItem({ icon, title, content }: ContactInfoItemProps) {

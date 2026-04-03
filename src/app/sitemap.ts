@@ -1,16 +1,5 @@
 import type { MetadataRoute } from 'next';
-
-const defaultSiteUrl = 'http://localhost:3000';
-
-function getSiteUrl() {
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
-
-    if (!siteUrl) {
-        return defaultSiteUrl;
-    }
-
-    return siteUrl.replace(/\/$/, '');
-}
+import { getSiteUrl } from './lib/siteUrl';
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const siteUrl = getSiteUrl();

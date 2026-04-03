@@ -1,9 +1,11 @@
+import type { ChangeEvent } from 'react';
+
 interface TextareaFieldProps {
     id: string;
     name: string;
     label: string;
     value: string;
-    onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+    onChange: (event: ChangeEvent<HTMLTextAreaElement>) => void;
     rows?: number;
     placeholder?: string;
     required?: boolean;

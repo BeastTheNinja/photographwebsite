@@ -1,9 +1,11 @@
+import type { ChangeEvent } from 'react';
+
 interface SelectFieldProps {
     id: string;
     name: string;
     label: string;
     value: string;
-    onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+    onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
     options: Array<{ label: string; value: string }>;
     required?: boolean;
     errorMessage?: string;

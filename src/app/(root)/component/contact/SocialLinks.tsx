@@ -1,7 +1,9 @@
+import type { ReactNode } from 'react';
+
 interface SocialLink {
     label: string;
     href: string;
-    icon: React.ReactNode;
+    icon: ReactNode;
 }
 
 interface SocialLinksProps {

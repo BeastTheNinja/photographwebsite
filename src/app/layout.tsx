@@ -1,11 +1,12 @@
 import type { Metadata, Viewport } from "next";
+import type { ReactNode } from "react";
 import "./globals.css";
 
 const siteName = "DinFotografAnninka";
 const siteDescription =
   "Fotograf i Brønderslev, Nordjylland. Specialiseret i portrætter, familiefotografering, bryllupsfotografering, naturfotografering og konfirmationsfotografering.";
 const defaultSiteUrl = "http://localhost:3000";
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim() || defaultSiteUrl;
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL?.trim() || defaultSiteUrl).replace(/\/$/, "");
 
 function getMetadataBase() {
   try {
@@ -126,7 +127,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html

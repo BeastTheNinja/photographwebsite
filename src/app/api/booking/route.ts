@@ -264,10 +264,12 @@ export async function POST(request: Request) {
 
         return jsonWithCors({ ok: true }, { status: 200 }, origin);
     } catch (error) {
-        const rawMessage = error instanceof Error ? error.message : 'Der opstod en fejl ved afsendelse af mail.';
-        const message = /535[-\s]5\.7\.8|BadCredentials/i.test(rawMessage)
-            ? 'SMTP login fejlede (Gmail afviser login). Tjek at SMTP_USER matcher kontoen, og at SMTP_PASS er et nyt App Password uden mellemrum.'
-            : rawMessage;
-        return jsonWithCors({ error: message }, { status: 500 }, origin);
+        const rawMessage = error instanceof Error ? error.message : String(error);
+        console.error('[booking] email send failed:', rawMessage);
+        const isBadCredentials = /535[-\s]5\.7\.8|BadCredentials/i.test(rawMessage);
+        const clientMessage = isBadCredentials
+            ? 'SMTP login fejlede. Kontakt venligst webstedsejeren.'
+            : 'Der opstod en fejl ved afsendelse af mail. Prøv venligst igen senere.';
+        return jsonWithCors({ error: clientMessage }, { status: 500 }, origin);
     }
 }

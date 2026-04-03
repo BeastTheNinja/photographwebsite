@@ -1,9 +1,11 @@
+import type { ReactNode } from 'react';
+
 interface FinalCTAProps {
     email: string;
     phone: string;
     phoneHref: string;
-    emailIcon: React.ReactNode;
-    phoneIcon: React.ReactNode;
+    emailIcon: ReactNode;
+    phoneIcon: ReactNode;
 }
 
 export default function FinalCTA({ email, phone, phoneHref, emailIcon, phoneIcon }: FinalCTAProps) {
