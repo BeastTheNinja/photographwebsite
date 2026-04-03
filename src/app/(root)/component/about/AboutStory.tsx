@@ -9,8 +9,8 @@ const values = [
 
 export default function AboutStory() {
     return (
-        <section className="py-18 md:py-24">
-            <div className="container mx-auto px-6">
+        <section className="py-14 sm:py-18 md:py-24">
+            <div className="container mx-auto px-4 sm:px-6">
                 <div className="grid max-w-6xl grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16 mx-auto">
                     <div className="relative order-2 lg:order-1">
                         <div className="absolute -inset-4 bg-linear-to-r from-indigo-600 to-purple-600 rounded-3xl blur-2xl opacity-20" />
@@ -18,7 +18,8 @@ export default function AboutStory() {
                             <Image
                                 src={portraitImage}
                                 alt="Annika foran kamera med et roligt portrætudtryk"
-                                className="w-full h-[32.5rem] object-cover"
+                                sizes="(max-width: 1024px) 100vw, 50vw"
+                                className="h-64 w-full object-cover sm:h-72 md:h-80 lg:h-[32.5rem]"
                                 placeholder="blur"
                                 loading="lazy"
                             />
@@ -33,10 +34,10 @@ export default function AboutStory() {
                         <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-indigo-600 dark:text-indigo-400">
                             Min historie
                         </p>
-                        <h2 className="mb-6 text-4xl tracking-tight text-gray-900 dark:text-white md:text-5xl">
+                        <h2 className="mb-6 text-3xl tracking-tight text-gray-900 dark:text-white sm:text-4xl md:text-5xl">
                             Fotografi handler for mig om mennesker, stemninger og de små øjeblikke
                         </h2>
-                        <div className="space-y-5 text-lg leading-relaxed text-gray-600 dark:text-gray-300">
+                        <div className="space-y-5 text-base leading-relaxed text-gray-600 dark:text-gray-300 sm:text-lg">
                             <p>
                                 Jeg arbejder ud fra Brønderslev og fotograferer mennesker, familier og begivenheder med fokus på
                                 at skabe billeder, der føles naturlige og nærværende.

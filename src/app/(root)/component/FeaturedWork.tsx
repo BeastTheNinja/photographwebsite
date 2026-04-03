@@ -27,15 +27,15 @@ const featuredWorks = [
 
 export default function FeaturedWork() {
     return (
-        <section className="py-24 bg-white dark:bg-gray-800 transition-colors">
-            <div className="container mx-auto px-6">
-                <div className="text-center mb-16">
-                    <h2 className="text-5xl md:text-6xl mb-4 bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+        <section className="bg-white py-12 transition-colors sm:py-16 md:py-20 lg:py-24 dark:bg-gray-800">
+            <div className="container mx-auto px-4 sm:px-6">
+                <div className="text-center mb-12 sm:mb-16">
+                    <h2 className="mb-4 bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-3xl text-transparent sm:text-4xl md:text-5xl lg:text-6xl">
                         Udvalgte billeder
                     </h2>
-                    <p className="text-xl text-gray-600 dark:text-gray-400">Portrætter og natur fra galleriet</p>
+                    <p className="text-base text-gray-600 dark:text-gray-400 sm:text-lg md:text-xl">Portrætter og natur fra galleriet</p>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
                     {featuredWorks.map((work) => (
                         <WorkCard
                             key={work.id}
@@ -47,10 +47,10 @@ export default function FeaturedWork() {
                     ))}
                 </div>
 
-                <div className="text-center mt-16">
+                <div className="mt-12 text-center sm:mt-16">
                     <Link
                         href="/galleri"
-                        className="bg-linear-to-r from-indigo-600 to-purple-600 text-white px-10 py-4 rounded-full transition-all hover:shadow-2xl hover:scale-105 inline-flex items-center gap-2 text-lg"
+                        className="inline-flex items-center gap-2 rounded-full bg-linear-to-r from-indigo-600 to-purple-600 px-6 py-3 text-base leading-none text-white transition-all hover:scale-105 hover:shadow-2xl sm:px-8 sm:py-3.5 md:px-10 md:py-4 md:text-lg"
                     >
                         Se hele galleriet
                         <span>→</span>

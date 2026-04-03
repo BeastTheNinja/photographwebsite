@@ -48,13 +48,13 @@ const priceCards = [
 
 export default function PricesPage() {
     return (
-        <section className="py-16 bg-linear-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 transition-colors">
-            <div className="container mx-auto px-6">
+        <section className="bg-linear-to-b from-gray-50 to-white py-12 transition-colors sm:py-14 md:py-16 dark:from-gray-900 dark:to-gray-800">
+            <div className="container mx-auto px-4 sm:px-6">
                 <div className="max-w-4xl mx-auto text-center mb-14">
-                    <h1 className="text-5xl md:text-6xl mb-6 bg-linear-to-r from-zinc-900 to-zinc-600 dark:from-zinc-100 dark:to-zinc-300 bg-clip-text text-transparent">
+                    <h1 className="mb-6 bg-linear-to-r from-zinc-900 to-zinc-600 bg-clip-text text-4xl text-transparent sm:text-5xl md:text-6xl dark:from-zinc-100 dark:to-zinc-300">
                         Priser
                     </h1>
-                    <p className="text-xl text-gray-600 dark:text-gray-300">
+                    <p className="text-base text-gray-600 sm:text-lg md:text-xl dark:text-gray-300">
                         Her finder du mine faste pakker og priser. Alle priser er ekskl. moms.
                     </p>
                 </div>
@@ -63,10 +63,10 @@ export default function PricesPage() {
                     {priceCards.map((card) => (
                         <article
                             key={card.title}
-                            className="rounded-3xl border border-gray-100 bg-white dark:bg-zinc-900 dark:border-zinc-800 shadow-xl p-8"
+                            className="rounded-3xl border border-gray-100 bg-white p-6 shadow-xl sm:p-8 dark:border-zinc-800 dark:bg-zinc-900"
                         >
-                            <h2 className="text-3xl mb-3 text-gray-900 dark:text-white">{card.title}</h2>
-                            <p className="text-2xl font-semibold mb-6 bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                            <h2 className="mb-3 text-2xl text-gray-900 sm:text-3xl dark:text-white">{card.title}</h2>
+                            <p className="mb-6 bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-xl font-semibold text-transparent sm:text-2xl">
                                 {card.price}
                             </p>
                             <ul className="space-y-3 text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -81,14 +81,14 @@ export default function PricesPage() {
                     ))}
                 </div>
 
-                <div className="max-w-4xl mx-auto mt-12 rounded-3xl border border-indigo-100 dark:border-indigo-900 bg-indigo-50/70 dark:bg-indigo-950/40 p-8 text-center">
-                    <p className="text-gray-700 dark:text-gray-200 text-lg">
+                <div className="mx-auto mt-12 max-w-4xl rounded-3xl border border-indigo-100 bg-indigo-50/70 p-6 text-center sm:p-8 dark:border-indigo-900 dark:bg-indigo-950/40">
+                    <p className="text-base text-gray-700 sm:text-lg dark:text-gray-200">
                         Alle priser er ekskl. moms.
                     </p>
-                    <p className="mt-6 text-gray-700 dark:text-gray-200 text-lg">
+                    <p className="mt-6 text-base text-gray-700 sm:text-lg dark:text-gray-200">
                         De kærligste hilsner
                     </p>
-                    <p className="text-2xl mt-2 bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                    <p className="mt-2 bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-xl text-transparent sm:text-2xl">
                         Din fotograf Annika
                     </p>
                 </div>

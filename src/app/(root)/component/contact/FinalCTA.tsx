@@ -10,20 +10,20 @@ interface FinalCTAProps {
 
 export default function FinalCTA({ email, phone, phoneHref, emailIcon, phoneIcon }: FinalCTAProps) {
     return (
-        <div className="max-w-5xl mx-auto mt-20 bg-linear-to-br from-indigo-600 via-purple-600 to-pink-600 text-white rounded-3xl p-12 md:p-16 text-center shadow-2xl relative overflow-hidden">
+        <div className="relative mx-auto mt-16 max-w-5xl overflow-hidden rounded-3xl bg-linear-to-br from-indigo-600 via-purple-600 to-pink-600 p-8 text-center text-white shadow-2xl sm:mt-20 sm:p-10 md:p-12 lg:p-16">
             <div className="absolute inset-0 opacity-10">
                 <div className="absolute top-0 left-0 w-64 h-64 bg-white rounded-full blur-3xl"></div>
                 <div className="absolute bottom-0 right-0 w-64 h-64 bg-white rounded-full blur-3xl"></div>
             </div>
             <div className="relative z-10">
-                <h2 className="text-4xl md:text-5xl mb-6">Lad os skabe noget smukt sammen</h2>
-                <p className="text-xl md:text-2xl mb-10 opacity-90 leading-relaxed max-w-3xl mx-auto">
+                <h2 className="mb-6 text-3xl sm:text-4xl md:text-5xl">Lad os skabe noget smukt sammen</h2>
+                <p className="mx-auto mb-10 max-w-3xl text-base leading-relaxed opacity-90 sm:text-lg md:text-xl lg:text-2xl">
                     Hver historie fortjener at blive fortalt gennem smuk billedkunst. Lad os diskutere din vision!
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <a
                         href={`mailto:${email}`}
-                        className="bg-white text-indigo-600 px-10 py-4 rounded-full hover:shadow-2xl hover:scale-105 transition-all inline-flex items-center justify-center gap-2 text-lg"
+                        className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-base text-indigo-600 transition-all hover:scale-105 hover:shadow-2xl sm:px-8 sm:py-3.5 md:px-10 md:py-4 md:text-lg"
                     >
                         {emailIcon}
                         Send email
@@ -31,15 +31,15 @@ export default function FinalCTA({ email, phone, phoneHref, emailIcon, phoneIcon
                     {phoneHref ? (
                         <a
                             href={`tel:${phoneHref}`}
-                            className="bg-white/10 backdrop-blur-md border-2 border-white/30 text-white px-10 py-4 rounded-full hover:bg-white/20 transition-all inline-flex items-center justify-center gap-2 text-lg"
+                            className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 bg-white/10 px-6 py-3 text-base text-white backdrop-blur-md transition-all hover:bg-white/20 sm:px-8 sm:py-3.5 md:px-10 md:py-4 md:text-lg"
                         >
                             {phoneIcon}
                             Ring til mig
                         </a>
                     ) : (
-                        <span className="bg-white/10 backdrop-blur-md border-2 border-white/30 text-white px-10 py-4 rounded-full inline-flex items-center justify-center gap-2 text-lg opacity-90">
+                        <span className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 bg-white/10 px-6 py-3 text-base text-white opacity-90 backdrop-blur-md sm:px-8 sm:py-3.5 md:px-10 md:py-4 md:text-lg">
                             {phoneIcon}
-                            Telefonnummer kommer snart
+                            {phone || 'Telefonnummer kommer snart'}
                         </span>
                     )}
                 </div>

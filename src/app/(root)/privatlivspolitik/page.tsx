@@ -11,13 +11,13 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
     return (
-        <section className="py-16 bg-linear-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 transition-colors">
-            <div className="max-w-4xl mx-auto px-6">
+        <section className="bg-linear-to-b from-gray-50 to-white py-12 transition-colors sm:py-14 md:py-16 dark:from-gray-900 dark:to-gray-800">
+            <div className="mx-auto max-w-4xl px-4 sm:px-6">
                 <div className="mb-10">
-                    <h1 className="text-4xl md:text-5xl mb-4 bg-linear-to-r from-zinc-900 to-zinc-600 dark:from-zinc-100 dark:to-zinc-300 bg-clip-text text-transparent">
+                    <h1 className="mb-4 bg-linear-to-r from-zinc-900 to-zinc-600 bg-clip-text text-3xl text-transparent sm:text-4xl md:text-5xl dark:from-zinc-100 dark:to-zinc-300">
                         Privatlivspolitik
                     </h1>
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    <p className="leading-relaxed text-gray-600 dark:text-gray-300">
                         Vi indhenter kun persondata i de tilfælde, hvor det er relevant for din aktivitet hos DinFotografAnninka,
                         og vi behandler altid personoplysninger i overensstemmelse med gældende lovgivning.
                     </p>
