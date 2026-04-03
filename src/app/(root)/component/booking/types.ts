@@ -25,10 +25,10 @@ export const initialBookingFormData: BookingFormData = {
 export const sessionTypes = [
     {
         title: 'Bryllupsfotografering',
-        description: 'Heldags dækning af jeres store dag',
+        description: 'Heldagsdækning af jeres store dag',
     },
     {
-        title: 'Portrætsession',
+        title: 'Portrætfotografering',
         description: 'Individuelle, par- eller familieportrætter',
     },
     {
@@ -39,7 +39,7 @@ export const sessionTypes = [
 
 export const bookingOptions = [
     'Bryllupsfotografering',
-    'Portrætsession',
+    'Portrætfotografering',
     'Familiefotografering',
     'Event dækning',
     'Andet',

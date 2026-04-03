@@ -8,6 +8,7 @@ import { ThemeProvider } from "./component/context/ThemeContext";
 const navItems = [
     { href: "/", label: "Hjem" },
     { href: "/galleri", label: "Galleri" },
+    { href: "/priser", label: "Priser" },
     { href: "/om", label: "Om" },
     { href: "/book", label: "Booking" },
     { href: "/kontakt", label: "Kontakt" },

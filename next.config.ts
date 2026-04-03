@@ -50,6 +50,14 @@ const securityHeaders = [
     key: "X-DNS-Prefetch-Control",
     value: "on",
   },
+  ...(!isDev
+    ? [
+      {
+        key: "Strict-Transport-Security",
+        value: "max-age=31536000; includeSubDomains",
+      },
+    ]
+    : []),
 ];
 
 const nextConfig: NextConfig = {

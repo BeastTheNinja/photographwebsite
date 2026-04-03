@@ -30,7 +30,7 @@ export default function BookingSuccess({ formData, onBookAnother }: BookingSucce
                     <div className="space-y-3 text-left text-gray-700 dark:text-gray-300">
                         <p>1. Du modtager en bekræftelsesmail på <strong>{formData.email}</strong>.</p>
                         <p>2. Jeg gennemgår din forespørgsel og vender tilbage inden for 24 timer.</p>
-                        <p>3. Vi afstemmer detaljer og planlægger en fantastisk session.</p>
+                        <p>3. Vi afstemmer detaljerne og planlægger en fantastisk fotosession.</p>
                     </div>
                 </div>
 
@@ -62,7 +62,7 @@ export default function BookingSuccess({ formData, onBookAnother }: BookingSucce
                         onClick={onBookAnother}
                         className="bg-linear-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-full hover:shadow-xl hover:scale-105 transition-all"
                     >
-                        Book en ny session
+                        Book en ny fotosession
                     </button>
                     <Link
                         href="/"

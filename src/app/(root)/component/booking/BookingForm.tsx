@@ -37,7 +37,7 @@ export default function BookingForm({ formData, fieldErrors, onChange, onSubmit,
                 <TextField
                     id="name"
                     name="name"
-                    label="Fulde navn *"
+                    label="Fuldt navn *"
                     value={formData.name}
                     onChange={onChange}
                     placeholder="Dit navn"
@@ -48,7 +48,7 @@ export default function BookingForm({ formData, fieldErrors, onChange, onSubmit,
                 <TextField
                     id="email"
                     name="email"
-                    label="Email *"
+                    label="E-mail *"
                     type="email"
                     value={formData.email}
                     onChange={onChange}

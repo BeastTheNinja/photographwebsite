@@ -15,12 +15,20 @@ export default function ContactCTA({ email }: ContactCTAProps) {
                 fange dine vigtige øjeblikke.
             </p>
 
-            <Link
-                href="/book"
-                className="w-full bg-linear-to-r from-indigo-600 to-purple-600 text-white px-8 py-4 rounded-full transition-all hover:shadow-2xl hover:scale-[1.02] flex items-center justify-center gap-2 mb-8 text-lg"
-            >
-                Book en session
-            </Link>
+            <div className="mb-8 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <Link
+                    href="/book"
+                    className="w-full bg-linear-to-r from-indigo-600 to-purple-600 text-white px-8 py-4 rounded-full transition-all hover:shadow-2xl hover:scale-[1.02] flex items-center justify-center gap-2 text-lg"
+                >
+                    Book en session
+                </Link>
+                <Link
+                    href="/priser"
+                    className="w-full bg-white dark:bg-zinc-900 border border-indigo-200 dark:border-indigo-700 text-indigo-700 dark:text-indigo-300 px-8 py-4 rounded-full transition-all hover:shadow-lg hover:scale-[1.02] flex items-center justify-center gap-2 text-lg"
+                >
+                    Se priser
+                </Link>
+            </div>
 
             <div className="border-t border-indigo-200 dark:border-indigo-800 pt-8">
                 <h3 className="mb-4 text-lg text-gray-900 dark:text-white">Foretrækker du en besked?</h3>

@@ -45,12 +45,9 @@ export function Footer() {
                     <div>
                         <h3 className="mb-6 text-lg text-white">Juridisk</h3>
                         <div className="mb-6 flex flex-col gap-3">
-                            <span className="transition-colors hover:text-white">
+                            <Link href="/privatlivspolitik" className="transition-colors hover:text-white">
                                 Privatlivspolitik
-                            </span>
-                            <span className="transition-colors hover:text-white">
-                                Handelsbetingelser
-                            </span>
+                            </Link>
                         </div>
                     </div>
                 </div>

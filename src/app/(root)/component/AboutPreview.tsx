@@ -10,7 +10,7 @@ export default function AboutPreview() {
                     </h2>
                     <p className="text-xl text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                         Jeg er Annika, en passioneret fotograf med fokus på at indfange essensen i hvert øjeblik.
-                        Med flere års erfaring inden for bryllupsfotografering, portrætsessions og eventdækning
+                        Inden for bryllupsfotografering, portrætsessions og eventdækning
                         skaber jeg tidløse billeder, der fortæller din unikke historie.
                     </p>
                     <p className="text-xl text-gray-700 dark:text-gray-300 mb-10 leading-relaxed">
