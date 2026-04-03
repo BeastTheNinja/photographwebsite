@@ -7,18 +7,18 @@ import {
   PhoneIcon,
   MapPinIcon,
   ClockIcon,
-  InstagramIcon,
+  TikTokIcon,
   FacebookIcon,
 } from '../component/contact/icons';
 
 export default function Contact() {
   const email = 'dinfotografannika@gmail.com';
   const phone = 'kommer snart'; // Placeholder, da telefonnummer ikke er tilgængeligt endnu
-  const phoneHref = ''; // Will be updated to normalized E.164 format, e.g. '+4540404040'
+  const phoneHref = 'kommer snart'; // Will be updated to normalized E.164 format, e.g. '+4540404040'
   const iconClass = 'w-7 h-7 text-white';
 
   const socialLinks = [
-    { label: 'TikTok', href: 'https://tiktok.com', icon: <InstagramIcon className={iconClass} /> },
+    { label: 'TikTok', href: 'https://www.tiktok.com/@annikalarsen81', icon: <TikTokIcon className={iconClass} /> },
     { label: 'Facebook', href: 'https://www.facebook.com/Annika81larsen', icon: <FacebookIcon className={iconClass} /> },
   ];
 
