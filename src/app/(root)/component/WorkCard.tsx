@@ -16,6 +16,7 @@ export default function WorkCard({ imageSrc, title, description, alt }: WorkCard
                 width={1080}
                 height={800}
                 sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                loading="lazy"
                 className="w-full h-96 object-cover group-hover:scale-110 transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

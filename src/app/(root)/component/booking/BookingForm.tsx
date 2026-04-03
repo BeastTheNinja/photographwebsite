@@ -17,6 +17,19 @@ export default function BookingForm({ formData, onChange, onSubmit, isSubmitting
 
     return (
         <form onSubmit={onSubmit} className="bg-white dark:bg-zinc-900 rounded-2xl shadow-xl p-8 md:p-10 border border-gray-100 dark:border-zinc-800">
+            <div className="hidden" aria-hidden="true">
+                <label htmlFor="website">Website</label>
+                <input
+                    id="website"
+                    name="website"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={formData.website}
+                    onChange={onChange}
+                />
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <TextField
                     id="name"

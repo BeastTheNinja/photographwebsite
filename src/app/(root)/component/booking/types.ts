@@ -7,6 +7,7 @@ export interface BookingFormData {
     sessionType: string;
     location: string;
     message: string;
+    website: string;
 }
 
 export const initialBookingFormData: BookingFormData = {
@@ -18,6 +19,7 @@ export const initialBookingFormData: BookingFormData = {
     sessionType: '',
     location: '',
     message: '',
+    website: '',
 };
 
 export const sessionTypes = [
