@@ -3,43 +3,68 @@ import type { GalleryImage } from './types';
 export const galleryImages: GalleryImage[] = [
     {
         id: 1,
-        src: '/images/gallery/bryllup-01.jpg',
-        alt: 'Bryllupsfoto ved kirke',
-        category: 'Bryllup',
+        src: '/Naja Blackwhite.jpg',
+        alt: 'Sort-hvidt portraet af ung kvinde',
+        category: 'Portraet',
     },
     {
         id: 2,
-        src: '/images/gallery/portraet-01.jpg',
-        alt: 'Portraet i naturligt lys',
+        src: '/Naja Farve.jpg',
+        alt: 'Portraet af ung kvinde i farver',
         category: 'Portraet',
     },
     {
         id: 3,
-        src: '/images/gallery/familie-01.jpg',
-        alt: 'Familiefoto i park',
-        category: 'Familie',
+        src: '/Naja dia.jpg',
+        alt: 'Kreativt portraet med dia-lys',
+        category: 'Portraet',
     },
     {
         id: 4,
-        src: '/images/gallery/natur-01.jpg',
-        alt: 'Naturbillede fra strand',
-        category: 'Natur',
+        src: '/Naja side eye.jpg',
+        alt: 'Portraet med sideblik',
+        category: 'Portraet',
     },
     {
         id: 5,
-        src: '/images/gallery/golden-hour-01.jpg',
-        alt: 'Golden hour fotografering',
-        category: 'Natur',
+        src: '/Far Cool.JPG',
+        alt: 'Portraet af far med cool udtryk',
+        category: 'Portraet',
     },
     {
         id: 6,
-        src: '/images/gallery/portraet-02.jpg',
-        alt: 'Sort-hvid portraet',
+        src: '/Far sur.JPG',
+        alt: 'Portraet af far med alvorligt udtryk',
         category: 'Portraet',
+    },
+    {
+        id: 7,
+        src: '/And.JPG',
+        alt: 'Naturbillede af and ved vandet',
+        category: 'Natur',
+    },
+    {
+        id: 8,
+        src: '/Ænder.JPG',
+        alt: 'Naturbillede af aender i roligt miljoe',
+        category: 'Natur',
+    },
+    {
+        id: 9,
+        src: '/Ænder i cirkel.JPG',
+        alt: 'Naturbillede af aender i cirkel',
+        category: 'Natur',
     },
 ];
 
+const preferredCategoryOrder = ['Portraet', 'Natur'];
+
 export const galleryCategories = [
     'Alle',
-    ...Array.from(new Set(galleryImages.map((image) => image.category))),
+    ...preferredCategoryOrder.filter((category) =>
+        galleryImages.some((image) => image.category === category),
+    ),
+    ...Array.from(new Set(galleryImages.map((image) => image.category))).filter(
+        (category) => !preferredCategoryOrder.includes(category),
+    ),
 ];

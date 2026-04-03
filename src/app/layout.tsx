@@ -1,9 +1,86 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
+const siteName = "DinFotografAnninka";
+const siteDescription =
+  "Fotograf i Brønderslev, Nordjylland. Specialiseret i portrætter, familiefotografering, bryllupsfotografering, naturfotografering og konfirmationsfotografering.";
+const defaultSiteUrl = "http://localhost:3000";
+
+function getMetadataBase() {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+
+  if (!siteUrl) {
+    return new URL(defaultSiteUrl);
+  }
+
+  try {
+    return new URL(siteUrl);
+  } catch {
+    return new URL(defaultSiteUrl);
+  }
+}
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#ffffff",
+};
+
 export const metadata: Metadata = {
-  title: "DinFotografAnninka",
-  description: "Fotograf i Brønderslev Nordjylland. Specialiseret i portrætter, familiefotografering, bryllupsfotografering, Naturfotografering, Konfirmationfotografering.",
+  metadataBase: getMetadataBase(),
+  title: {
+    default: siteName,
+    template: `%s | ${siteName}`,
+  },
+  description: siteDescription,
+  keywords: [
+    "fotograf",
+    "fotograf Brønderslev",
+    "fotograf Nordjylland",
+    "portrætfotograf",
+    "bryllupsfotograf",
+    "familiefotografering",
+    "naturfotografering",
+    "konfirmationsfotografering",
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "da_DK",
+    url: "/",
+    siteName,
+    title: siteName,
+    description: siteDescription,
+    images: [
+      {
+        url: "/android-chrome-512x512.png",
+        width: 512,
+        height: 512,
+        alt: `${siteName} logo`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteName,
+    description: siteDescription,
+    images: ["/android-chrome-512x512.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  applicationName: siteName,
+  category: "photography",
   icons: {
     icon: [
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },

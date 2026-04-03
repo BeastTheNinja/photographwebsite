@@ -58,7 +58,7 @@ export function Header({ logoUrl, title, navItems }: HeaderProps) {
                             type="button"
                             className="rounded-lg p-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
                             onClick={() => setMobileMenuOpen((prev) => !prev)}
-                            aria-label="Toggle menu"
+                            aria-label="Skift menu"
                             aria-expanded={mobileMenuOpen}
                         >
                             <span className="text-sm text-gray-700 dark:text-gray-300">{mobileMenuOpen ? 'Luk' : 'Menu'}</span>
@@ -69,7 +69,7 @@ export function Header({ logoUrl, title, navItems }: HeaderProps) {
                 {mobileMenuOpen && (
                     <nav
                         className="absolute right-6 top-[calc(100%-0.5rem)] w-64 rounded-2xl border border-gray-200 bg-white/95 p-4 shadow-xl backdrop-blur-md dark:border-gray-700 dark:bg-gray-900/95"
-                        aria-label="Main navigation"
+                        aria-label="Hovednavigation"
                     >
                         {desktopNavItems.map((item) => (
                             <Link
