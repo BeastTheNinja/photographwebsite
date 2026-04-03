@@ -36,7 +36,8 @@ export function Header({ logoUrl, title, navItems }: HeaderProps) {
                                 width={200}
                                 height={100}
                                 sizes="(max-width: 768px) 140px, 200px"
-                                className="h-[70px] w-[140px] object-contain md:h-[100px] md:w-[200px]"
+                                loading="eager"
+                                className="h-17.5 w-35 object-contain md:h-25 md:w-50"
                                 priority
                             />
                         ) : (

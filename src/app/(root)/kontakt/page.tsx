@@ -12,7 +12,7 @@ import {
 } from '../component/contact/icons';
 
 export default function Contact() {
-  const email = 'annika@photographer.com';
+  const email = 'dinfotografannika@gmail.com';
   const phone = '+45 40 40 40 40';
 
   const socialLinks = [
