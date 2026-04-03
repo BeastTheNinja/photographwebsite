@@ -19,7 +19,7 @@ export default function BookingForm({ formData, fieldErrors, onChange, onSubmit,
     const sessionTypeOptions = [{ label: 'Vælg en sessionstype', value: '' }, ...bookingOptions.map((option) => ({ label: option, value: option }))];
 
     return (
-        <form onSubmit={onSubmit} className="bg-white dark:bg-zinc-900 rounded-2xl shadow-xl p-8 md:p-10 border border-gray-100 dark:border-zinc-800">
+        <form onSubmit={onSubmit} className="rounded-2xl border border-gray-100 bg-white p-4 shadow-xl sm:p-6 md:p-8 lg:p-10 dark:border-zinc-800 dark:bg-zinc-900">
             <div className="hidden" aria-hidden="true">
                 <label htmlFor="website">Website</label>
                 <input
@@ -33,7 +33,7 @@ export default function BookingForm({ formData, fieldErrors, onChange, onSubmit,
                 />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div className="mb-6 grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2">
                 <TextField
                     id="name"
                     name="name"
@@ -136,7 +136,7 @@ export default function BookingForm({ formData, fieldErrors, onChange, onSubmit,
             <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-linear-to-r from-indigo-600 to-purple-600 text-white px-8 py-4 rounded-full transition-all hover:shadow-2xl hover:scale-[1.02] disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full rounded-full bg-linear-to-r from-indigo-600 to-purple-600 px-6 py-3 text-base text-white transition-all hover:scale-[1.02] hover:shadow-2xl disabled:cursor-not-allowed disabled:opacity-70 sm:px-8 sm:py-3.5 md:py-4"
             >
                 {isSubmitting ? 'Sender...' : 'Send bookingforespørgsel'}
             </button>

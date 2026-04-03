@@ -33,14 +33,14 @@ export default function Contact() {
   ];
 
   return (
-    <div className="py-16">
-      <div className="container mx-auto px-6">
+    <div className="py-12 sm:py-14 md:py-16">
+      <div className="container mx-auto px-4 sm:px-6">
         {/* Header */}
         <div className="text-center mb-16 max-w-3xl mx-auto">
-          <h1 className="text-5xl md:text-6xl mb-6 bg-linear-to-r from-zinc-900 to-zinc-600 dark:from-zinc-100 dark:to-zinc-300 bg-clip-text text-transparent">
+          <h1 className="mb-6 bg-linear-to-r from-zinc-900 to-zinc-600 bg-clip-text text-4xl text-transparent sm:text-5xl md:text-6xl dark:from-zinc-100 dark:to-zinc-300">
             Kontakt
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-400">
+          <p className="text-base text-gray-600 sm:text-lg md:text-xl dark:text-gray-400">
             Jeg ville elske at høre fra dig! Uanset om du har et spørgsmål eller gerne vil booke en
             session, er du velkommen til at kontakte mig.
           </p>
@@ -50,7 +50,7 @@ export default function Contact() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Information */}
             <div>
-              <h2 className="text-3xl md:text-4xl mb-10 bg-linear-to-r from-zinc-900 to-zinc-600 dark:from-zinc-100 dark:to-zinc-300 bg-clip-text text-transparent">
+              <h2 className="mb-10 bg-linear-to-r from-zinc-900 to-zinc-600 bg-clip-text text-2xl text-transparent sm:text-3xl md:text-4xl dark:from-zinc-100 dark:to-zinc-300">
                 Kontaktoplysninger
               </h2>
 

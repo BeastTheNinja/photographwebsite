@@ -7,7 +7,7 @@ const HERO_BLUR_DATA_URL =
 
 export default function HeroSection() {
     return (
-        <section className="relative h-[43.75rem] flex items-center justify-center overflow-hidden">
+        <section className="relative flex min-h-[28rem] items-center justify-center overflow-hidden max-[390px]:min-h-[26rem] sm:min-h-[36rem] md:min-h-[40rem] lg:h-[43.75rem]">
             <div className="absolute inset-0">
                 <Image
                     src={LogoImage}
@@ -23,23 +23,23 @@ export default function HeroSection() {
                 <div className="absolute inset-0 bg-linear-to-br from-black/60 via-black/50 to-purple-900/40" />
             </div>
             <div className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto">
-                <h1 className="text-6xl md:text-7xl lg:text-8xl mb-6 tracking-tight leading-tight">
+                <h1 className="mb-5 text-3xl leading-[1.05] tracking-tight max-[390px]:text-[1.9rem] sm:mb-6 sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
                     DinFotografAnninka
                 </h1>
-                <p className="text-xl md:text-2xl mb-10 max-w-2xl mx-auto text-gray-200">
+                <p className="mb-8 mx-auto max-w-2xl text-sm leading-relaxed text-gray-200 sm:mb-10 sm:text-lg md:text-xl lg:text-2xl">
                     Professionel fotografering til bryllupper, portrætter og uforglemmelige begivenheder
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Link
                         href="/book"
-                        className="bg-linear-to-r from-indigo-600 to-purple-600 text-white px-10 py-4 rounded-full transition-all hover:shadow-2xl hover:scale-105 inline-flex items-center justify-center gap-2 text-lg"
+                        className="inline-flex items-center justify-center gap-2 rounded-full bg-linear-to-r from-indigo-600 to-purple-600 px-6 py-3 text-base leading-none text-white transition-all hover:scale-105 hover:shadow-2xl sm:px-8 sm:py-3.5 md:px-10 md:py-4 md:text-lg"
                     >
                         Book nu
                         <span>→</span>
                     </Link>
                     <Link
                         href="/galleri"
-                        className="bg-white/10 backdrop-blur-md border-2 border-white/30 hover:bg-white/20 text-white px-10 py-4 rounded-full transition-all inline-flex items-center justify-center gap-2 text-lg"
+                        className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 bg-white/10 px-6 py-3 text-base leading-none text-white backdrop-blur-md transition-all hover:bg-white/20 sm:px-8 sm:py-3.5 md:px-10 md:py-4 md:text-lg"
                     >
                         Se galleri
                     </Link>

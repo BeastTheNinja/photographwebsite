@@ -12,20 +12,20 @@ function DisplayValue({ value }: { value: string }) {
 
 export default function BookingSuccess({ formData, onBookAnother }: BookingSuccessProps) {
     return (
-        <div className="min-h-[80vh] flex items-center justify-center py-16 px-4">
+        <div className="flex min-h-[70vh] items-center justify-center px-4 py-12 sm:min-h-[80vh] sm:py-16">
             <div className="text-center max-w-2xl mx-auto">
-                <div className="w-24 h-24 bg-linear-to-br from-green-400 to-emerald-600 rounded-full mx-auto mb-8 shadow-2xl flex items-center justify-center">
-                    <span className="text-4xl text-white">✓</span>
+                <div className="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full bg-linear-to-br from-green-400 to-emerald-600 shadow-2xl sm:h-24 sm:w-24">
+                    <span className="text-3xl text-white sm:text-4xl">✓</span>
                 </div>
 
-                <h2 className="text-4xl md:text-5xl mb-6 bg-linear-to-r from-zinc-900 to-zinc-600 dark:from-zinc-100 dark:to-zinc-300 bg-clip-text text-transparent">
+                <h2 className="mb-6 bg-linear-to-r from-zinc-900 to-zinc-600 bg-clip-text text-3xl text-transparent sm:text-4xl md:text-5xl dark:from-zinc-100 dark:to-zinc-300">
                     Booking modtaget
                 </h2>
-                <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
+                <p className="mb-8 text-base leading-relaxed text-gray-600 sm:text-lg md:text-xl dark:text-gray-300">
                     Tak fordi du valgte Din Fotograf Annika. Jeg glæder mig til at fange dine særlige øjeblikke.
                 </p>
 
-                <div className="bg-linear-to-br from-indigo-50 to-purple-50 dark:from-indigo-950 dark:to-purple-950 rounded-2xl p-8 mb-8 border border-indigo-100 dark:border-indigo-800">
+                <div className="mb-8 rounded-2xl border border-indigo-100 bg-linear-to-br from-indigo-50 to-purple-50 p-6 sm:p-8 dark:border-indigo-800 dark:from-indigo-950 dark:to-purple-950">
                     <h3 className="text-lg mb-4 text-gray-900 dark:text-white">Hvad sker der nu?</h3>
                     <div className="space-y-3 text-left text-gray-700 dark:text-gray-300">
                         <p>1. Du modtager en bekræftelsesmail på <strong>{formData.email}</strong>.</p>
@@ -34,7 +34,7 @@ export default function BookingSuccess({ formData, onBookAnother }: BookingSucce
                     </div>
                 </div>
 
-                <div className="bg-white dark:bg-zinc-900 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-zinc-800 mb-8">
+                <div className="mb-8 rounded-2xl border border-gray-100 bg-white p-5 shadow-lg sm:p-6 dark:border-zinc-800 dark:bg-zinc-900">
                     <h3 className="text-lg mb-4 text-gray-900 dark:text-white">Din booking</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-left">
                         <div>
@@ -60,13 +60,13 @@ export default function BookingSuccess({ formData, onBookAnother }: BookingSucce
                     <button
                         type="button"
                         onClick={onBookAnother}
-                        className="bg-linear-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-full hover:shadow-xl hover:scale-105 transition-all"
+                        className="rounded-full bg-linear-to-r from-indigo-600 to-purple-600 px-6 py-3 text-base leading-none text-white transition-all hover:scale-105 hover:shadow-xl sm:px-8"
                     >
                         Book en ny fotosession
                     </button>
                     <Link
                         href="/"
-                        className="border-2 border-gray-300 text-gray-700 dark:text-gray-100 dark:border-zinc-600 px-8 py-3 rounded-full hover:border-indigo-600 hover:text-indigo-600 transition-all"
+                        className="rounded-full border-2 border-gray-300 px-6 py-3 text-base leading-none text-gray-700 transition-all hover:border-indigo-600 hover:text-indigo-600 sm:px-8 dark:border-zinc-600 dark:text-gray-100"
                     >
                         Tilbage til forsiden
                     </Link>

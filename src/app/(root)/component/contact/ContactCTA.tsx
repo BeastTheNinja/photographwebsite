@@ -6,11 +6,11 @@ interface ContactCTAProps {
 
 export default function ContactCTA({ email }: ContactCTAProps) {
     return (
-        <div className="bg-linear-to-br from-indigo-50 to-purple-50 dark:from-indigo-950 dark:to-purple-950 rounded-3xl p-10 border border-indigo-100 dark:border-indigo-800">
-            <h2 className="text-3xl md:text-4xl mb-6 bg-linear-to-r from-indigo-600 to-purple-600 dark:from-indigo-300 dark:to-purple-300 bg-clip-text text-transparent">
+        <div className="rounded-3xl border border-indigo-100 bg-linear-to-br from-indigo-50 to-purple-50 p-6 sm:p-8 md:p-10 dark:border-indigo-800 dark:from-indigo-950 dark:to-purple-950">
+            <h2 className="mb-6 bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-2xl text-transparent sm:text-3xl md:text-4xl dark:from-indigo-300 dark:to-purple-300">
                 Klar til at booke?
             </h2>
-            <p className="text-gray-600 dark:text-gray-300 mb-8 text-lg leading-relaxed">
+            <p className="mb-8 text-base leading-relaxed text-gray-600 dark:text-gray-300 sm:text-lg">
                 Book din fotosession i dag! Om det er familie, portræt eller særlig begivenhed, er jeg her til at
                 fange dine vigtige øjeblikke.
             </p>
@@ -18,13 +18,13 @@ export default function ContactCTA({ email }: ContactCTAProps) {
             <div className="mb-8 grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <Link
                     href="/book"
-                    className="w-full bg-linear-to-r from-indigo-600 to-purple-600 text-white px-8 py-4 rounded-full transition-all hover:shadow-2xl hover:scale-[1.02] flex items-center justify-center gap-2 text-lg"
+                    className="flex w-full items-center justify-center gap-2 rounded-full bg-linear-to-r from-indigo-600 to-purple-600 px-6 py-3 text-base text-white transition-all hover:scale-[1.02] hover:shadow-2xl sm:px-8 sm:py-4 sm:text-lg"
                 >
                     Book en session
                 </Link>
                 <Link
                     href="/priser"
-                    className="w-full bg-white dark:bg-zinc-900 border border-indigo-200 dark:border-indigo-700 text-indigo-700 dark:text-indigo-300 px-8 py-4 rounded-full transition-all hover:shadow-lg hover:scale-[1.02] flex items-center justify-center gap-2 text-lg"
+                    className="flex w-full items-center justify-center gap-2 rounded-full border border-indigo-200 bg-white px-6 py-3 text-base text-indigo-700 transition-all hover:scale-[1.02] hover:shadow-lg sm:px-8 sm:py-4 sm:text-lg dark:border-indigo-700 dark:bg-zinc-900 dark:text-indigo-300"
                 >
                     Se priser
                 </Link>
