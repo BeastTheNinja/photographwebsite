@@ -15,10 +15,11 @@ export default function Contact() {
   const email = 'dinfotografannika@gmail.com';
   const phone = 'kommer snart'; // Placeholder, da telefonnummer ikke er tilgængeligt endnu
   const phoneHref = ''; // Will be updated to normalized E.164 format, e.g. '+4540404040'
+  const iconClass = 'w-7 h-7 text-white';
 
   const socialLinks = [
-    { label: 'TikTok', href: 'https://tiktok.com', icon: <InstagramIcon className="w-7 h-7 text-white" /> },
-    { label: 'Facebook', href: 'https://www.facebook.com/Annika81larsen', icon: <FacebookIcon className="w-7 h-7 text-white" /> },
+    { label: 'TikTok', href: 'https://tiktok.com', icon: <InstagramIcon className={iconClass} /> },
+    { label: 'Facebook', href: 'https://www.facebook.com/Annika81larsen', icon: <FacebookIcon className={iconClass} /> },
   ];
 
   return (
@@ -45,7 +46,7 @@ export default function Contact() {
 
               <div className="space-y-8">
                 <ContactInfoItem
-                  icon={<EmailIcon className="w-7 h-7 text-white" />}
+                  icon={<EmailIcon className={iconClass} />}
                   title="Email"
                   content={
                     <a
@@ -58,20 +59,24 @@ export default function Contact() {
                 />
 
                 <ContactInfoItem
-                  icon={<PhoneIcon className="w-7 h-7 text-white" />}
+                  icon={<PhoneIcon className={iconClass} />}
                   title="Telefon"
                   content={
-                    <a
-                      href={phoneHref ? `tel:${phoneHref}` : undefined}
-                      className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
-                    >
-                      {phone}
-                    </a>
+                    phoneHref ? (
+                      <a
+                        href={`tel:${phoneHref}`}
+                        className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                      >
+                        {phone}
+                      </a>
+                    ) : (
+                      <span>{phone}</span>
+                    )
                   }
                 />
 
                 <ContactInfoItem
-                  icon={<MapPinIcon className="w-7 h-7 text-white" />}
+                  icon={<MapPinIcon className={iconClass} />}
                   title="Beliggenhed"
                   content={
                     <>
@@ -83,7 +88,7 @@ export default function Contact() {
                 />
 
                 <ContactInfoItem
-                  icon={<ClockIcon className="w-7 h-7 text-white" />}
+                  icon={<ClockIcon className={iconClass} />}
                   title="Åbningstider"
                   content={
                     <>
@@ -111,7 +116,7 @@ export default function Contact() {
           phone={phone}
           phoneHref={phoneHref}
           emailIcon={<EmailIcon className="w-7 h-7" />}
-          phoneIcon={<PhoneIcon className="w-7 h-7 text-white" />}
+          phoneIcon={<PhoneIcon className={iconClass} />}
         />
       </div>
     </div>
