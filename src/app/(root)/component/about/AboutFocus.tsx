@@ -15,7 +15,7 @@ const focusAreas = [
 
 export default function AboutFocus() {
     return (
-        <section className="bg-white/70 py-14 sm:py-18 md:py-24 dark:bg-zinc-950/50">
+        <section className="bg-white/70 py-14 sm:py-[4.5rem] md:py-24 dark:bg-zinc-950/50">
             <div className="container mx-auto px-4 sm:px-6">
                 <div className="max-w-6xl mx-auto">
                     <div className="text-center mb-12">

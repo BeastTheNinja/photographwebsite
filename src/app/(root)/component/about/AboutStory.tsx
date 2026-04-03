@@ -9,7 +9,7 @@ const values = [
 
 export default function AboutStory() {
     return (
-        <section className="py-14 sm:py-18 md:py-24">
+        <section className="py-14 sm:py-[4.5rem] md:py-24">
             <div className="container mx-auto px-4 sm:px-6">
                 <div className="grid max-w-6xl grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16 mx-auto">
                     <div className="relative order-2 lg:order-1">

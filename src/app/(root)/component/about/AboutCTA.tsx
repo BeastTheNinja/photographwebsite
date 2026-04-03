@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function AboutCTA() {
     return (
-        <section className="py-14 sm:py-18 md:py-24">
+        <section className="py-14 sm:py-[4.5rem] md:py-24">
             <div className="container mx-auto px-4 sm:px-6">
                 <div className="relative mx-auto max-w-5xl overflow-hidden rounded-3xl bg-linear-to-br from-indigo-600 via-purple-600 to-pink-600 p-8 text-center text-white shadow-2xl sm:p-10 md:p-12 lg:p-16">
                     <div className="absolute inset-0 opacity-10">

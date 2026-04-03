@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function AboutHero() {
     return (
-        <section className="relative overflow-hidden pb-14 pt-12 sm:pt-14 sm:pb-18 md:pt-20 md:pb-24">
+        <section className="relative overflow-hidden pb-14 pt-12 sm:pt-14 sm:pb-[4.5rem] md:pt-20 md:pb-24">
             <div className="absolute inset-0 -z-10 bg-linear-to-b from-indigo-50/70 via-white to-white dark:from-indigo-950/30 dark:via-gray-900 dark:to-gray-900" />
             <div className="absolute left-1/2 top-6 -z-10 h-64 w-64 -translate-x-1/2 rounded-full bg-indigo-400/10 blur-3xl dark:bg-indigo-500/10" />
             <div className="container mx-auto px-4 sm:px-6">
