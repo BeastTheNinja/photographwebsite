@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function AboutCTA() {
     return (
-        <section className="py-14 sm:py-[4.5rem] md:py-24">
+        <section className="py-14 sm:py-18 md:py-24">
             <div className="container mx-auto px-4 sm:px-6">
                 <div className="relative mx-auto max-w-5xl overflow-hidden rounded-3xl bg-linear-to-br from-indigo-600 via-purple-600 to-pink-600 p-8 text-center text-white shadow-2xl sm:p-10 md:p-12 lg:p-16">
                     <div className="absolute inset-0 opacity-10">
@@ -15,7 +15,7 @@ export default function AboutCTA() {
                         <p className="mx-auto mb-8 max-w-3xl text-base leading-relaxed opacity-90 sm:text-lg md:text-xl">
                             Hvis du kan mærke, at vi passer godt sammen, så lad os tage den første snak og se, hvad vi kan skabe.
                         </p>
-                        <p className="mb-8 text-sm uppercase tracking-[0.3em] text-white/70">
+                        <p className="mb-8 text-sm uppercase tracking-widest text-white/70">
                             Portrætter · Familier · Bryllupper · Events
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">

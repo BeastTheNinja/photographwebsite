@@ -21,11 +21,11 @@ const processSteps = [
 
 export default function AboutProcess() {
     return (
-        <section className="py-14 sm:py-[4.5rem] md:py-24">
+        <section className="py-14 sm:py-16 md:py-24">
             <div className="container mx-auto px-4 sm:px-6">
                 <div className="max-w-6xl mx-auto">
                     <div className="text-center mb-12">
-                        <p className="text-sm font-semibold uppercase tracking-[0.3em] text-indigo-600 dark:text-indigo-400 mb-4">
+                        <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
                             Sådan arbejder jeg
                         </p>
                         <h2 className="text-3xl tracking-tight text-gray-900 sm:text-4xl md:text-5xl dark:text-white">
@@ -39,7 +39,7 @@ export default function AboutProcess() {
                                 key={step.number}
                                 className="rounded-3xl border border-gray-100 bg-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl sm:p-8 dark:border-zinc-800 dark:bg-zinc-900"
                             >
-                                <p className="mb-5 text-sm font-semibold tracking-[0.35em] text-indigo-500 dark:text-indigo-400">
+                                <p className="mb-5 text-sm font-semibold tracking-widest text-indigo-500 dark:text-indigo-400">
                                     {step.number}
                                 </p>
                                 <h3 className="mb-4 text-2xl text-gray-900 dark:text-white">{step.title}</h3>

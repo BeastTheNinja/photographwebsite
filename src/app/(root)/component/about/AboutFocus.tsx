@@ -15,11 +15,11 @@ const focusAreas = [
 
 export default function AboutFocus() {
     return (
-        <section className="bg-white/70 py-14 sm:py-[4.5rem] md:py-24 dark:bg-zinc-950/50">
+        <section className="bg-white/70 py-14 sm:py-16 md:py-24 dark:bg-zinc-950/50">
             <div className="container mx-auto px-4 sm:px-6">
                 <div className="max-w-6xl mx-auto">
                     <div className="text-center mb-12">
-                        <p className="text-sm font-semibold uppercase tracking-[0.3em] text-indigo-600 dark:text-indigo-400 mb-4">
+                        <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
                             Det jeg laver mest
                         </p>
                         <h2 className="text-3xl tracking-tight text-gray-900 sm:text-4xl md:text-5xl dark:text-white">
