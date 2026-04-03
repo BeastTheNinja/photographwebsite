@@ -4,7 +4,7 @@ import LogoImage from "../../../../public/MorsLogo.png";
 
 export default function HeroSection() {
     return (
-        <section className="relative h-[700px] flex items-center justify-center overflow-hidden">
+        <section className="relative h-175 flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0">
                 <Image
                     src={LogoImage}
