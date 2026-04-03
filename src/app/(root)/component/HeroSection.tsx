@@ -8,7 +8,7 @@ export default function HeroSection() {
             <div className="absolute inset-0">
                 <Image
                     src={LogoImage}
-                    alt="Logo"
+                    alt=""
                     fill
                     sizes="100vw"
                     className="object-cover"
