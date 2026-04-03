@@ -13,11 +13,11 @@ import {
 
 export default function Contact() {
   const email = 'dinfotografannika@gmail.com';
-  const phone = '+45 40 40 40 40';
+  const phone = 'kommer snart'; // Placeholder, da telefonnummer ikke er tilgængeligt endnu
 
   const socialLinks = [
-    { label: 'Instagram', href: 'https://instagram.com', icon: InstagramIcon },
-    { label: 'Facebook', href: 'https://facebook.com', icon: FacebookIcon },
+    { label: 'TikTok', href: 'https://tiktok.com', icon: InstagramIcon },
+    { label: 'Facebook', href: 'https://www.facebook.com/Annika81larsen', icon: FacebookIcon },
   ];
 
   return (
