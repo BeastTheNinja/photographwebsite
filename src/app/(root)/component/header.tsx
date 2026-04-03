@@ -30,11 +30,11 @@ export function Header({ logoUrl, title, navItems }: HeaderProps) {
 
     return (
         <header className="sticky top-0 z-50 border-b border-gray-100 bg-white/80 shadow-sm backdrop-blur-md transition-colors dark:border-gray-800 dark:bg-gray-900/80">
-            <div className="container relative mx-auto px-4 py-4 sm:px-6 sm:py-5">
-                <div className="flex items-center justify-between gap-4">
-                    <Link href="/" className="flex items-center gap-2.5 sm:gap-3">
+            <div className="container relative mx-auto px-3 py-3.5 sm:px-6 sm:py-5">
+                <div className="flex items-center justify-between gap-2 sm:gap-4">
+                    <Link href="/" className="flex min-w-0 items-center gap-2 sm:gap-3">
                         {logoUrl ? (
-                            <div className="relative h-[3.75rem] w-[7.25rem] sm:h-[4.375rem] sm:w-[8.75rem] md:h-[6.25rem] md:w-[12.5rem] overflow-hidden">
+                            <div className="relative h-[3.25rem] w-[6.5rem] overflow-hidden max-[420px]:h-[3rem] max-[420px]:w-[6rem] sm:h-[4.375rem] sm:w-[8.75rem] md:h-[6.25rem] md:w-[12.5rem]">
                                 {!isLogoLoaded ? (
                                     <div
                                         aria-hidden="true"
@@ -47,24 +47,24 @@ export function Header({ logoUrl, title, navItems }: HeaderProps) {
                                     alt="Logo"
                                     width={200}
                                     height={100}
-                                    sizes="(max-width: 640px) 116px, (max-width: 768px) 140px, 200px"
+                                    sizes="(max-width: 420px) 96px, (max-width: 640px) 116px, (max-width: 768px) 140px, 200px"
                                     loading="eager"
                                     placeholder="blur"
                                     blurDataURL={LOGO_BLUR_DATA_URL}
                                     onLoad={() => setIsLogoLoaded(true)}
-                                    className={`h-[3.75rem] w-[7.25rem] object-contain transition-all duration-300 sm:h-[4.375rem] sm:w-[8.75rem] md:h-[6.25rem] md:w-[12.5rem] ${isLogoLoaded ? 'blur-0 scale-100 opacity-100' : 'blur-sm scale-[1.02] opacity-80'}`}
+                                    className={`h-[3.25rem] w-[6.5rem] object-contain transition-all duration-300 max-[420px]:h-[3rem] max-[420px]:w-[6rem] sm:h-[4.375rem] sm:w-[8.75rem] md:h-[6.25rem] md:w-[12.5rem] ${isLogoLoaded ? 'blur-0 scale-100 opacity-100' : 'blur-sm scale-[1.02] opacity-80'}`}
                                 />
                             </div>
                         ) : (
                             <div className="h-10 w-10 rounded-lg bg-linear-to-br from-indigo-600 via-purple-600 to-pink-500 shadow-lg" />
                         )}
-                        <span className="max-w-[8rem] truncate text-sm tracking-tight text-gray-900 dark:text-white max-[360px]:hidden sm:max-w-none sm:text-xl">{title}</span>
+                        <span className="max-w-[8rem] truncate text-sm tracking-tight text-gray-900 dark:text-white max-[420px]:hidden sm:max-w-none sm:text-xl">{title}</span>
                     </Link>
 
-                    <div className="flex items-center gap-2 sm:gap-3">
+                    <div className="flex items-center gap-1.5 sm:gap-3">
                         <Link
                             href={bookingItem.href}
-                            className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full bg-linear-to-r from-indigo-600 to-purple-600 px-3 py-2 text-sm leading-none text-white transition-all hover:shadow-lg sm:gap-2 sm:px-5"
+                            className="inline-flex items-center gap-1 whitespace-nowrap rounded-full bg-linear-to-r from-indigo-600 to-purple-600 px-2.5 py-2 text-sm leading-none text-white transition-all hover:shadow-lg max-[420px]:px-2.5 sm:gap-2 sm:px-5"
                         >
                             <svg
                                 className="h-3.5 w-3.5 sm:h-4 sm:w-4"
@@ -81,19 +81,32 @@ export function Header({ logoUrl, title, navItems }: HeaderProps) {
                                     d="M8 7V3m8 4V3m-9 8h10m-11 10h12a2 2 0 002-2V7a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
                                 />
                             </svg>
-                            <span className="max-[360px]:hidden">{bookingItem.label}</span>
-                            <span className="hidden max-[360px]:inline">Book</span>
+                            <span className="max-[420px]:hidden">{bookingItem.label}</span>
+                            <span className="hidden max-[420px]:inline">Book</span>
                         </Link>
 
                         <button
                             type="button"
-                            className="rounded-lg p-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
+                            className="inline-flex items-center justify-center rounded-lg p-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
                             onClick={() => setMobileMenuOpen((prev) => !prev)}
                             aria-label="Skift menu"
                             aria-expanded={mobileMenuOpen}
                             aria-controls="mobile-nav"
                         >
-                            <span className="text-sm text-gray-700 dark:text-gray-300">{mobileMenuOpen ? 'Luk' : 'Menu'}</span>
+                            <svg
+                                className="h-5 w-5 text-gray-700 dark:text-gray-300 max-[420px]:h-6 max-[420px]:w-6"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                                focusable="false"
+                            >
+                                {mobileMenuOpen ? (
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                ) : (
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                                )}
+                            </svg>
                         </button>
                     </div>
                 </div>
@@ -101,7 +114,7 @@ export function Header({ logoUrl, title, navItems }: HeaderProps) {
                 {mobileMenuOpen && (
                     <nav
                         id="mobile-nav"
-                        className="absolute left-4 right-4 top-[calc(100%-0.5rem)] rounded-2xl border border-gray-200 bg-white/95 p-4 shadow-xl backdrop-blur-md sm:left-auto sm:right-6 sm:w-64 dark:border-gray-700 dark:bg-gray-900/95"
+                        className="absolute left-2 right-2 top-[calc(100%-0.5rem)] rounded-2xl border border-gray-200 bg-white/95 p-4 shadow-xl backdrop-blur-md sm:left-auto sm:right-6 sm:w-64 dark:border-gray-700 dark:bg-gray-900/95"
                         aria-label="Hovednavigation"
                     >
                         {desktopNavItems.map((item) => (
