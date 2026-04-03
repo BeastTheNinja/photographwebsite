@@ -27,7 +27,7 @@ export default function GalleryPage() {
                         Galleri
                     </h1>
                     <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-                        Udskift placeholders med dine egne billeder, eller brug denne struktur direkte på tværs af flere sider.
+                        Et udvalg af portrætter og naturbilleder fra mine seneste fotosessions.
                     </p>
                 </div>
 

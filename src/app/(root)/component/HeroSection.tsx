@@ -22,21 +22,21 @@ export default function HeroSection() {
                     DinFotografAnninka
                 </h1>
                 <p className="text-xl md:text-2xl mb-10 max-w-2xl mx-auto text-gray-200">
-                    Professional photography for weddings, portraits, and unforgettable events
+                    Professionel fotografering til bryllupper, portrætter og uforglemmelige begivenheder
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Link
                         href="/book"
                         className="bg-linear-to-r from-indigo-600 to-purple-600 text-white px-10 py-4 rounded-full transition-all hover:shadow-2xl hover:scale-105 inline-flex items-center justify-center gap-2 text-lg"
                     >
-                        Book Now
+                        Book nu
                         <span>→</span>
                     </Link>
                     <Link
                         href="/galleri"
                         className="bg-white/10 backdrop-blur-md border-2 border-white/30 hover:bg-white/20 text-white px-10 py-4 rounded-full transition-all inline-flex items-center justify-center gap-2 text-lg"
                     >
-                        View Gallery
+                        Se galleri
                     </Link>
                 </div>
             </div>

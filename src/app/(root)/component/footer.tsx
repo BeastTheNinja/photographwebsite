@@ -56,9 +56,9 @@ export function Footer() {
                 </div>
 
                 <div className="mt-12 border-t border-white/10 pt-8 text-center text-sm">
-                    <p>Copyright 2026 DinFotografAnninka. Alle rettigheder forbeholdes.</p>
+                    <p>Ophavsret 2026 DinFotografAnninka. Alle rettigheder forbeholdes.</p>
                     <Link href="/admin/login" className="mt-2 inline-block text-xs text-white/40 transition-colors hover:text-white/60">
-                        Admin Login
+                        Admin log ind
                     </Link>
                 </div>
             </div>

@@ -9,6 +9,12 @@ interface GalleryLightboxProps {
     onClose: () => void;
 }
 
+const categoryLabels: Record<string, string> = {
+    Alle: 'Alle',
+    Portraet: 'Portræt',
+    Natur: 'Natur',
+};
+
 export default function GalleryLightbox({ image, onClose }: GalleryLightboxProps) {
     const closeButtonRef = useRef<HTMLButtonElement>(null);
     const previousFocusRef = useRef<HTMLElement | null>(null);
@@ -57,10 +63,10 @@ export default function GalleryLightbox({ image, onClose }: GalleryLightboxProps
                     src={image.src}
                     alt={image.alt}
                     className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
-                    placeholderLabel={image.category}
+                    placeholderLabel={categoryLabels[image.category] ?? image.category}
                     priority
                 />
-                <p className="text-white text-center mt-6 text-xl">{image.category}</p>
+                <p className="text-white text-center mt-6 text-xl">{categoryLabels[image.category] ?? image.category}</p>
             </div>
         </div>
     );
