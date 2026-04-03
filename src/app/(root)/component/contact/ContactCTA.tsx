@@ -1,13 +1,17 @@
 import Link from 'next/link';
 
-export default function ContactCTA() {
+interface ContactCTAProps {
+    email: string;
+}
+
+export default function ContactCTA({ email }: ContactCTAProps) {
     return (
         <div className="bg-linear-to-br from-indigo-50 to-purple-50 dark:from-indigo-950 dark:to-purple-950 rounded-3xl p-10 border border-indigo-100 dark:border-indigo-800">
             <h2 className="text-3xl md:text-4xl mb-6 bg-linear-to-r from-indigo-600 to-purple-600 dark:from-indigo-300 dark:to-purple-300 bg-clip-text text-transparent">
                 Klar til at booke?
             </h2>
             <p className="text-gray-600 dark:text-gray-300 mb-8 text-lg leading-relaxed">
-                Book din fotosession i dag! Om det er bryllup, portræt eller særlig begivenhed, er jeg her til at
+                Book din fotosession i dag! Om det er familie, portræt eller særlig begivenhed, er jeg her til at
                 fange dine vigtige øjeblikke.
             </p>
 
@@ -25,7 +29,7 @@ export default function ContactCTA() {
                     typisk inden for 24 timer på hverdage.
                 </p>
                 <a
-                    href="mailto:annika@photographer.com"
+                    href={`mailto:${email}`}
                     className="text-indigo-600 dark:text-indigo-400 hover:text-purple-600 dark:hover:text-purple-400 underline text-lg"
                 >
                     Send mig en email →
@@ -45,11 +49,7 @@ export default function ContactCTA() {
                     </li>
                     <li className="flex items-center gap-2">
                         <div className="w-2 h-2 bg-indigo-600 dark:bg-indigo-400 rounded-full"></div>
-                        Rejser tilgængelig: Dækning i hele Danmark
-                    </li>
-                    <li className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-indigo-600 dark:bg-indigo-400 rounded-full"></div>
-                        Betalingsmuligheder: Bankoverførsel, MobilePay
+                        Rejser tilgængelig: Dækning i hele Jylland
                     </li>
                 </ul>
             </div>

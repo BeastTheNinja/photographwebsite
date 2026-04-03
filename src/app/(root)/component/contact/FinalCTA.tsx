@@ -26,13 +26,20 @@ export default function FinalCTA({ email, phone, phoneHref, emailIcon, phoneIcon
                         {emailIcon}
                         Send email
                     </a>
-                    <a
-                        href={`tel:${phoneHref}`}
-                        className="bg-white/10 backdrop-blur-md border-2 border-white/30 text-white px-10 py-4 rounded-full hover:bg-white/20 transition-all inline-flex items-center justify-center gap-2 text-lg"
-                    >
-                        {phoneIcon}
-                        Ring til mig
-                    </a>
+                    {phoneHref ? (
+                        <a
+                            href={`tel:${phoneHref}`}
+                            className="bg-white/10 backdrop-blur-md border-2 border-white/30 text-white px-10 py-4 rounded-full hover:bg-white/20 transition-all inline-flex items-center justify-center gap-2 text-lg"
+                        >
+                            {phoneIcon}
+                            Ring til mig
+                        </a>
+                    ) : (
+                        <span className="bg-white/10 backdrop-blur-md border-2 border-white/30 text-white px-10 py-4 rounded-full inline-flex items-center justify-center gap-2 text-lg opacity-90">
+                            {phoneIcon}
+                            Telefonnummer kommer snart
+                        </span>
+                    )}
                 </div>
             </div>
         </div>

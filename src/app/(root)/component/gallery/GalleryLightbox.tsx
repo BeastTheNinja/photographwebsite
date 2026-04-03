@@ -18,6 +18,8 @@ const categoryLabels: Record<string, string> = {
 export default function GalleryLightbox({ image, onClose }: GalleryLightboxProps) {
     const closeButtonRef = useRef<HTMLButtonElement>(null);
     const previousFocusRef = useRef<HTMLElement | null>(null);
+    const dialogRef = useRef<HTMLDivElement>(null);
+    const dialogTitleId = 'gallery-lightbox-title';
 
     useEffect(() => {
         if (image) {
@@ -27,6 +29,40 @@ export default function GalleryLightbox({ image, onClose }: GalleryLightboxProps
             const handleKeyDown = (event: KeyboardEvent) => {
                 if (event.key === 'Escape') {
                     onClose();
+                    return;
+                }
+
+                if (event.key !== 'Tab') {
+                    return;
+                }
+
+                const focusableElements = dialogRef.current?.querySelectorAll<HTMLElement>(
+                    'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+                );
+
+                if (!focusableElements || focusableElements.length === 0) {
+                    return;
+                }
+
+                const firstElement = focusableElements[0];
+                const lastElement = focusableElements[focusableElements.length - 1];
+                const activeElement = document.activeElement as HTMLElement | null;
+
+                if (!activeElement || !dialogRef.current?.contains(activeElement)) {
+                    event.preventDefault();
+                    firstElement.focus();
+                    return;
+                }
+
+                if (event.shiftKey && activeElement === firstElement) {
+                    event.preventDefault();
+                    lastElement.focus();
+                    return;
+                }
+
+                if (!event.shiftKey && activeElement === lastElement) {
+                    event.preventDefault();
+                    firstElement.focus();
                 }
             };
 
@@ -46,8 +82,12 @@ export default function GalleryLightbox({ image, onClose }: GalleryLightboxProps
 
     return (
         <div
+            ref={dialogRef}
             className="fixed inset-0 bg-black/95 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in"
             onClick={onClose}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={dialogTitleId}
         >
             <button
                 ref={closeButtonRef}
@@ -59,6 +99,9 @@ export default function GalleryLightbox({ image, onClose }: GalleryLightboxProps
                 ✕
             </button>
             <div className="max-w-6xl max-h-[90vh]" onClick={(event) => event.stopPropagation()}>
+                <h2 id={dialogTitleId} className="sr-only">
+                    Billede i stor visning: {categoryLabels[image.category] ?? image.category}
+                </h2>
                 <GalleryImage
                     src={image.src}
                     alt={image.alt}

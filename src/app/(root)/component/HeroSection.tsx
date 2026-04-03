@@ -1,6 +1,9 @@
-import Image from "next/image";
-import Link from "next/link";
-import LogoImage from "../../../../public/MorsLogo.png";
+import Image from 'next/image';
+import Link from 'next/link';
+import LogoImage from '../../../../public/MorsLogo.png';
+
+const HERO_BLUR_DATA_URL =
+    'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiIHZpZXdCb3g9IjAgMCAxOTIwIDEwODAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPjxzdG9wIHN0b3AtY29sb3I9IiMyNzI3MmEiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiMxODE4MWIiIG9mZnNldD0iMSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IGZpbGw9InVybCgjZykiIHg9IjAiIHk9IjAiIHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiLz48L3N2Zz4=';
 
 export default function HeroSection() {
     return (
@@ -12,6 +15,8 @@ export default function HeroSection() {
                     fill
                     loading="eager"
                     sizes="100vw"
+                    placeholder="blur"
+                    blurDataURL={HERO_BLUR_DATA_URL}
                     className="object-cover"
                     priority
                 />

@@ -5,20 +5,51 @@ const siteName = "DinFotografAnninka";
 const siteDescription =
   "Fotograf i Brønderslev, Nordjylland. Specialiseret i portrætter, familiefotografering, bryllupsfotografering, naturfotografering og konfirmationsfotografering.";
 const defaultSiteUrl = "http://localhost:3000";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim() || defaultSiteUrl;
 
 function getMetadataBase() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
-
-  if (!siteUrl) {
-    return new URL(defaultSiteUrl);
-  }
-
   try {
     return new URL(siteUrl);
   } catch {
     return new URL(defaultSiteUrl);
   }
 }
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": `${siteUrl}#business`,
+      name: siteName,
+      description: siteDescription,
+      url: siteUrl,
+      image: `${siteUrl}/android-chrome-512x512.png`,
+      areaServed: "Brønderslev, Nordjylland",
+      serviceType: [
+        "Portrætfotografering",
+        "Familiefotografering",
+        "Bryllupsfotografering",
+        "Naturfotografering",
+        "Konfirmationsfotografering",
+      ],
+      sameAs: [
+        "https://www.tiktok.com/@annikalarsen81",
+        "https://www.facebook.com/Annika81larsen",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}#website`,
+      url: siteUrl,
+      name: siteName,
+      description: siteDescription,
+      publisher: {
+        "@id": `${siteUrl}#business`,
+      },
+    },
+  ],
+};
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -109,8 +140,19 @@ export default function RootLayout({
             __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark');}}catch(e){}})();`,
           }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData),
+          }}
+        />
       </head>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <a href="#main-content" className="skip-link">
+          Spring til indhold
+        </a>
+        {children}
+      </body>
     </html>
   );
 }

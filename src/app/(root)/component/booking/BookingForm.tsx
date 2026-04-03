@@ -4,15 +4,18 @@ import TextField from '../form/TextField';
 import TextareaField from '../form/TextareaField';
 import { bookingOptions, type BookingFormData } from './types';
 
+type FieldErrors = Partial<Record<keyof BookingFormData, string>>;
+
 interface BookingFormProps {
     formData: BookingFormData;
+    fieldErrors: FieldErrors;
     onChange: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
     onSubmit: (event: FormEvent<HTMLFormElement>) => void;
     isSubmitting: boolean;
     errorMessage?: string | null;
 }
 
-export default function BookingForm({ formData, onChange, onSubmit, isSubmitting, errorMessage }: BookingFormProps) {
+export default function BookingForm({ formData, fieldErrors, onChange, onSubmit, isSubmitting, errorMessage }: BookingFormProps) {
     const sessionTypeOptions = [{ label: 'Vælg en sessionstype', value: '' }, ...bookingOptions.map((option) => ({ label: option, value: option }))];
 
     return (
@@ -38,6 +41,7 @@ export default function BookingForm({ formData, onChange, onSubmit, isSubmitting
                     value={formData.name}
                     onChange={onChange}
                     placeholder="Dit navn"
+                    errorMessage={fieldErrors.name}
                     required
                 />
 
@@ -49,6 +53,7 @@ export default function BookingForm({ formData, onChange, onSubmit, isSubmitting
                     value={formData.email}
                     onChange={onChange}
                     placeholder="dig@email.dk"
+                    errorMessage={fieldErrors.email}
                     required
                 />
 
@@ -60,6 +65,7 @@ export default function BookingForm({ formData, onChange, onSubmit, isSubmitting
                     value={formData.phone}
                     onChange={onChange}
                     placeholder="+45 12 34 56 78"
+                    errorMessage={fieldErrors.phone}
                     required
                 />
 
@@ -70,6 +76,7 @@ export default function BookingForm({ formData, onChange, onSubmit, isSubmitting
                     value={formData.sessionType}
                     onChange={onChange}
                     options={sessionTypeOptions}
+                    errorMessage={fieldErrors.sessionType}
                     required
                 />
 
@@ -80,6 +87,7 @@ export default function BookingForm({ formData, onChange, onSubmit, isSubmitting
                     type="date"
                     value={formData.date}
                     onChange={onChange}
+                    errorMessage={fieldErrors.date}
                     required
                 />
 
@@ -90,6 +98,7 @@ export default function BookingForm({ formData, onChange, onSubmit, isSubmitting
                     type="time"
                     value={formData.time}
                     onChange={onChange}
+                    errorMessage={fieldErrors.time}
                     required
                 />
             </div>
@@ -102,6 +111,7 @@ export default function BookingForm({ formData, onChange, onSubmit, isSubmitting
                     value={formData.location}
                     onChange={onChange}
                     placeholder="Fx København, park eller studio"
+                    errorMessage={fieldErrors.location}
                 />
             </div>
 
@@ -113,11 +123,12 @@ export default function BookingForm({ formData, onChange, onSubmit, isSubmitting
                     value={formData.message}
                     onChange={onChange}
                     placeholder="Skriv eventuelle ønsker, ideer eller spørgsmål"
+                    errorMessage={fieldErrors.message}
                 />
             </div>
 
             {errorMessage ? (
-                <div className="mb-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-900 dark:bg-red-950 dark:text-red-200" role="alert">
+                <div className="mb-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-900 dark:bg-red-950 dark:text-red-200" role="alert" aria-live="polite">
                     {errorMessage}
                 </div>
             ) : null}

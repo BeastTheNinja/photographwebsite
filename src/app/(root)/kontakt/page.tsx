@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import ContactInfoItem from '../component/contact/ContactInfoItem';
 import ContactCTA from '../component/contact/ContactCTA';
 import SocialLinks from '../component/contact/SocialLinks';
@@ -11,10 +12,19 @@ import {
   FacebookIcon,
 } from '../component/contact/icons';
 
+export const metadata: Metadata = {
+  title: 'Kontakt',
+  description:
+    'Kontakt DinFotografAnninka for portrætter, familiefotografering, bryllupsfotografering og andre sessioner i Brønderslev og Nordjylland.',
+  alternates: {
+    canonical: '/kontakt',
+  },
+};
+
 export default function Contact() {
   const email = 'dinfotografannika@gmail.com';
   const phone = 'kommer snart'; // Placeholder, da telefonnummer ikke er tilgængeligt endnu
-  const phoneHref = 'kommer snart'; // Will be updated to normalized E.164 format, e.g. '+4540404040'
+  const phoneHref = ''; // Update to normalized E.164 format, e.g. '+4540404040' when number is ready
   const iconClass = 'w-7 h-7 text-white';
 
   const socialLinks = [
@@ -80,9 +90,9 @@ export default function Contact() {
                   title="Beliggenhed"
                   content={
                     <>
-                      København, Danmark
+                      Brønderslev, Danmark
                       <br />
-                      Tilgængelig for rejser i hele landet
+                      Tilgængelig for rejser i hele Jylland
                     </>
                   }
                 />
@@ -106,7 +116,7 @@ export default function Contact() {
             </div>
 
             {/* Quick Contact CTA */}
-            <ContactCTA />
+            <ContactCTA email={email} />
           </div>
         </div>
 

@@ -27,7 +27,7 @@ export default function GalleryCard({ image, onOpen }: GalleryCardProps) {
                 className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-500"
                 placeholderLabel={image.category}
             />
-            <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
+            <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-end justify-center pb-6">
                 <div className="text-center">
                     <p className="text-white text-sm mb-1">{categoryLabels[image.category] ?? image.category}</p>
                     <span className="text-white text-xs opacity-80">Tryk for at se stort</span>
