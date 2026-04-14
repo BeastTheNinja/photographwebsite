@@ -36,10 +36,10 @@ export default function SelectField({
                 required={required}
                 aria-invalid={errorMessage ? 'true' : 'false'}
                 aria-describedby={errorMessage ? errorId : undefined}
-                className={`w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all ${errorMessage ? 'border-red-400 dark:border-red-700' : 'border-gray-200 dark:border-zinc-700'}`}
+                className={`w-full px-4 py-3 border rounded-xl bg-white text-gray-900 dark:bg-zinc-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all ${value ? '' : 'text-gray-500 dark:text-gray-400'} ${errorMessage ? 'border-red-400 dark:border-red-700' : 'border-gray-200 dark:border-zinc-700'}`}
             >
                 {options.map((option) => (
-                    <option key={option.value} value={option.value}>
+                    <option key={option.value} value={option.value} className="bg-white text-gray-900 dark:bg-zinc-900 dark:text-gray-100">
                         {option.label}
                     </option>
                 ))}
