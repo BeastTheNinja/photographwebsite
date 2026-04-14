@@ -1,4 +1,5 @@
 import type { ChangeEvent } from 'react';
+import { memo } from 'react';
 
 interface TextFieldProps {
     id: string;
@@ -12,7 +13,7 @@ interface TextFieldProps {
     errorMessage?: string;
 }
 
-export default function TextField({
+function TextField({
     id,
     name,
     label,
@@ -51,3 +52,5 @@ export default function TextField({
         </div>
     );
 }
+
+export default memo(TextField);

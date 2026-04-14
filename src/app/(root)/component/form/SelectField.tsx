@@ -1,4 +1,5 @@
 import type { ChangeEvent } from 'react';
+import { memo } from 'react';
 
 interface SelectFieldProps {
     id: string;
@@ -11,7 +12,7 @@ interface SelectFieldProps {
     errorMessage?: string;
 }
 
-export default function SelectField({
+function SelectField({
     id,
     name,
     label,
@@ -53,3 +54,5 @@ export default function SelectField({
         </div>
     );
 }
+
+export default memo(SelectField);
