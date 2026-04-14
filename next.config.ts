@@ -11,6 +11,7 @@ const withPWA = nextPWA({
   fallbacks: {
     document: "/offline",
   },
+  buildExcludes: [/\.(jpe?g|png|gif|webp|avif|ico|bmp|svg)(\?.*)?$/i],
 });
 
 const contentSecurityPolicy = [
