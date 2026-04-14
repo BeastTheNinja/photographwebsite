@@ -1,10 +1,16 @@
 import type { ChangeEvent, FormEvent } from 'react';
+import { memo } from 'react';
 import SelectField from '../form/SelectField';
 import TextField from '../form/TextField';
 import TextareaField from '../form/TextareaField';
 import { bookingOptions, type BookingFormData } from './types';
 
 type FieldErrors = Partial<Record<keyof BookingFormData, string>>;
+
+const sessionTypeOptions = [
+    { label: 'Vælg en sessionstype', value: '' },
+    ...bookingOptions.map((option) => ({ label: option, value: option })),
+];
 
 interface BookingFormProps {
     formData: BookingFormData;
@@ -15,9 +21,7 @@ interface BookingFormProps {
     errorMessage?: string | null;
 }
 
-export default function BookingForm({ formData, fieldErrors, onChange, onSubmit, isSubmitting, errorMessage }: BookingFormProps) {
-    const sessionTypeOptions = [{ label: 'Vælg en sessionstype', value: '' }, ...bookingOptions.map((option) => ({ label: option, value: option }))];
-
+function BookingForm({ formData, fieldErrors, onChange, onSubmit, isSubmitting, errorMessage }: BookingFormProps) {
     return (
         <form onSubmit={onSubmit} className="rounded-2xl border border-gray-100 bg-white p-4 shadow-xl sm:p-6 md:p-8 lg:p-10 dark:border-zinc-800 dark:bg-zinc-900">
             <div className="hidden" aria-hidden="true">
@@ -147,3 +151,5 @@ export default function BookingForm({ formData, fieldErrors, onChange, onSubmit,
         </form>
     );
 }
+
+export default memo(BookingForm);

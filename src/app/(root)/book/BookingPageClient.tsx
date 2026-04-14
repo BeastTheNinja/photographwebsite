@@ -1,7 +1,7 @@
 'use client';
 
 import type { ChangeEvent, FormEvent } from 'react';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import BookingForm from '../component/booking/BookingForm';
 import BookingHero from '../component/booking/BookingHero';
 import BookingServiceCards from '../component/booking/BookingServiceCards';
@@ -66,7 +66,7 @@ export default function BookingPageClient() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitError, setSubmitError] = useState<string | null>(null);
 
-    const handleChange = (
+    const handleChange = useCallback((
         event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
     ) => {
         const { name, value } = event.target;
@@ -85,7 +85,7 @@ export default function BookingPageClient() {
             delete next[name as keyof BookingFormData];
             return next;
         });
-    };
+    }, []);
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -124,12 +124,12 @@ export default function BookingPageClient() {
         }
     };
 
-    const handleNewBooking = () => {
+    const handleNewBooking = useCallback(() => {
         setIsSubmitted(false);
         setFormData(initialBookingFormData);
         setFieldErrors({});
         setSubmitError(null);
-    };
+    }, []);
 
     if (isSubmitted) {
         return <BookingSuccess formData={formData} onBookAnother={handleNewBooking} />;
