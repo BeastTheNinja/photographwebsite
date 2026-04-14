@@ -1,21 +1,70 @@
 {
+  "id": "/",
   "name": "DinFotografAnninka",
   "short_name": "AnninkaFoto",
+  "description": "Fotograf i Brønderslev, Nordjylland. Portrætter, familie, bryllup, natur og konfirmation.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "lang": "da-DK",
+  "dir": "ltr",
+  "theme_color": "#030213",
+  "background_color": "#ffffff",
+  "categories": ["photography", "lifestyle", "business"],
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "/android-chrome-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     }
   ],
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
-  "display": "standalone",
-  "lang": "da-DK",
-  "start_url": "/"
+  "shortcuts": [
+    {
+      "name": "Book fotografering",
+      "short_name": "Book",
+      "description": "Gå direkte til bookingformularen",
+      "url": "/book",
+      "icons": [
+        {
+          "src": "/shortcut-book-96x96.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Se galleri",
+      "short_name": "Galleri",
+      "description": "Åbn galleriet med udvalgte billeder",
+      "url": "/galleri",
+      "icons": [
+        {
+          "src": "/shortcut-galleri-96x96.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Kontakt",
+      "short_name": "Kontakt",
+      "description": "Kontakt DinFotografAnninka",
+      "url": "/kontakt",
+      "icons": [
+        {
+          "src": "/shortcut-kontakt-96x96.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    }
+  ]
 }

@@ -1,10 +1,22 @@
 import type { NextConfig } from "next";
+import nextPWA from "next-pwa";
 
 const isDev = process.env.NODE_ENV !== "production";
 
+const withPWA = nextPWA({
+  dest: "public",
+  disable: isDev,
+  register: true,
+  skipWaiting: true,
+  fallbacks: {
+    document: "/offline",
+  },
+  buildExcludes: [/\.(jpe?g|png|gif|webp|avif|ico|bmp|svg)(\?.*)?$/i],
+});
+
 const contentSecurityPolicy = [
   "default-src 'self'",
-  // Keep this broad enough for Next runtime + Vercel Analytics/Speed Insights.
+  "worker-src 'self'",
   `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://va.vercel-scripts.com`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https:",
@@ -82,4 +94,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default withPWA(nextConfig);

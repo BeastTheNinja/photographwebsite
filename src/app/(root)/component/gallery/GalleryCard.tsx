@@ -1,5 +1,6 @@
 'use client';
 
+import { memo } from 'react';
 import GalleryImage from './GalleryImage';
 import type { GalleryImage as GalleryImageType } from './types';
 
@@ -14,7 +15,7 @@ const categoryLabels: Record<string, string> = {
     Natur: 'Natur',
 };
 
-export default function GalleryCard({ image, onOpen }: GalleryCardProps) {
+function GalleryCard({ image, onOpen }: GalleryCardProps) {
     return (
         <button
             type="button"
@@ -36,3 +37,5 @@ export default function GalleryCard({ image, onOpen }: GalleryCardProps) {
         </button>
     );
 }
+
+export default memo(GalleryCard);

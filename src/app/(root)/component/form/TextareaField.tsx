@@ -1,4 +1,5 @@
 import type { ChangeEvent } from 'react';
+import { memo } from 'react';
 
 interface TextareaFieldProps {
     id: string;
@@ -12,7 +13,7 @@ interface TextareaFieldProps {
     errorMessage?: string;
 }
 
-export default function TextareaField({
+function TextareaField({
     id,
     name,
     label,
@@ -51,3 +52,5 @@ export default function TextareaField({
         </div>
     );
 }
+
+export default memo(TextareaField);
