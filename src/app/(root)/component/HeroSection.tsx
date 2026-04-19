@@ -13,8 +13,10 @@ export default function HeroSection() {
                     src={LogoImage}
                     alt=""
                     fill
-                    loading="eager"
                     sizes="100vw"
+                    quality={70}
+                    fetchPriority="high"
+                    decoding="async"
                     placeholder="blur"
                     blurDataURL={HERO_BLUR_DATA_URL}
                     className="object-cover"

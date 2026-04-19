@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import type { NavItem } from './navbar';
 
 const LOGO_BLUR_DATA_URL =
@@ -16,17 +16,8 @@ type HeaderProps = {
 
 export function Header({ logoUrl, title, navItems }: HeaderProps) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const [isLogoLoaded, setIsLogoLoaded] = useState(false);
-
-    const bookingItem = useMemo(
-        () => navItems.find((item) => item.href === '/book') ?? { href: '/book', label: 'Booking' },
-        [navItems],
-    );
-
-    const desktopNavItems = useMemo(
-        () => navItems.filter((item) => item.href !== bookingItem.href),
-        [navItems, bookingItem.href],
-    );
+    const bookingItem = navItems.find((item) => item.href === '/book') ?? { href: '/book', label: 'Booking' };
+    const desktopNavItems = navItems.filter((item) => item.href !== bookingItem.href);
 
     return (
         <header className="sticky top-0 z-50 border-b border-gray-100 bg-white/80 shadow-sm backdrop-blur-md transition-colors dark:border-gray-800 dark:bg-gray-900/80">
@@ -35,24 +26,15 @@ export function Header({ logoUrl, title, navItems }: HeaderProps) {
                     <Link href="/" className="flex min-w-0 items-center gap-2 sm:gap-3">
                         {logoUrl ? (
                             <div className="relative h-12 w-24 overflow-hidden sm:h-16 sm:w-36 md:h-24 md:w-52">
-                                {!isLogoLoaded ? (
-                                    <div
-                                        aria-hidden="true"
-                                        className="absolute inset-0 z-10 bg-linear-to-r from-zinc-200 via-zinc-100 to-zinc-200 dark:from-zinc-800 dark:via-zinc-700 dark:to-zinc-800 animate-pulse"
-                                    />
-                                ) : null}
-
                                 <Image
                                     src={logoUrl}
                                     alt="Logo"
                                     width={200}
                                     height={100}
                                     sizes="(max-width: 640px) 96px, (max-width: 768px) 144px, 208px"
-                                    loading="eager"
                                     placeholder="blur"
                                     blurDataURL={LOGO_BLUR_DATA_URL}
-                                    onLoad={() => setIsLogoLoaded(true)}
-                                    className={`h-12 w-24 object-contain transition-all duration-300 sm:h-16 sm:w-36 md:h-24 md:w-52 ${isLogoLoaded ? 'blur-0 scale-100 opacity-100' : 'blur-sm scale-[1.02] opacity-80'}`}
+                                    className="h-12 w-24 object-contain sm:h-16 sm:w-36 md:h-24 md:w-52"
                                 />
                             </div>
                         ) : (

@@ -1,10 +1,10 @@
 import type { ReactNode } from 'react';
 import { Header } from "./component/header";
 import LogoImage from "../../../public/icons/MorsLogo.png";
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Footer } from "./component/footer";
-import { ThemeProvider } from "./component/context/ThemeContext";
+import PerformanceInsights from './component/PerformanceInsights';
+
+export const dynamic = 'force-static';
 
 const navItems = [
     { href: "/", label: "Hjem" },
@@ -17,19 +17,16 @@ const navItems = [
 
 const Layout = ({ children }: { children: ReactNode }) => {
     return (
-        <ThemeProvider>
-            <div className="flex min-h-screen flex-col">
-                <Header
-                    logoUrl={LogoImage.src}
-                    title="DinFotografAnninka"
-                    navItems={navItems}
-                />
-                <main id="main-content" className="flex-1">{children}</main>
-                <Footer />
-                <Analytics />
-                <SpeedInsights />
-            </div>
-        </ThemeProvider>
+        <div className="flex min-h-screen flex-col">
+            <Header
+                logoUrl={LogoImage.src}
+                title="DinFotografAnninka"
+                navItems={navItems}
+            />
+            <main id="main-content" className="flex-1">{children}</main>
+            <Footer />
+            <PerformanceInsights />
+        </div>
     );
 };
 
