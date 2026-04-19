@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { Header } from "./component/header";
-import LogoImage from "../../../public/MorsLogo.png";
+import LogoImage from "../../../public/icons/MorsLogo.png";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Footer } from "./component/footer";

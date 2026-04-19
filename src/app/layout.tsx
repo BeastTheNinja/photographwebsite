@@ -21,7 +21,7 @@ const structuredData = {
       name: siteName,
       description: siteDescription,
       url: siteUrl,
-      image: `${siteUrl}/android-chrome-512x512.png`,
+      image: `${siteUrl}/icons/android-chrome-512x512.png`,
       areaServed: "Brønderslev, Nordjylland",
       serviceType: [
         "Portrætfotografering",
@@ -86,7 +86,7 @@ export const metadata: Metadata = {
     description: siteDescription,
     images: [
       {
-        url: "/android-chrome-512x512.png",
+        url: "/icons/android-chrome-512x512.png",
         width: 512,
         height: 512,
         alt: `${siteName} logo`,
@@ -97,7 +97,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteName,
     description: siteDescription,
-    images: ["/android-chrome-512x512.png"],
+    images: ["/icons/android-chrome-512x512.png"],
   },
   robots: {
     index: true,
@@ -114,11 +114,11 @@ export const metadata: Metadata = {
   category: "photography",
   icons: {
     icon: [
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/icons/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icons/favicon-16x16.png", sizes: "16x16", type: "image/png" },
     ],
-    apple: "/apple-touch-icon.png",
-    shortcut: "/favicon-32x32.png",
+    apple: "/icons/apple-touch-icon.png",
+    shortcut: "/icons/favicon-32x32.png",
   },
   manifest: "/site.webmanifest",
 };

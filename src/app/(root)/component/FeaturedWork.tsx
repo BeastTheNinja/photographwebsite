@@ -1,29 +1,29 @@
 import Link from "next/link";
 import WorkCard from "./WorkCard";
+import { galleryImages } from "./gallery/galleryData";
 
-const featuredWorks = [
-    {
-        id: 1,
-        imageSrc: "/Naja Blackwhite.jpg",
-        title: "Portræt",
-        description: "Udvalgte portrætter med naturligt udtryk",
-        alt: "Sort-hvidt portraet",
-    },
-    {
-        id: 2,
-        imageSrc: "/Naja Farve.jpg",
-        title: "Portræt",
-        description: "Farverigt portræt fra seneste fotosession",
-        alt: "Portraet i farver",
-    },
-    {
-        id: 3,
-        imageSrc: "/And.JPG",
-        title: "Natur",
-        description: "Naturbillede med roligt motiv",
-        alt: "Naturbillede af and",
-    },
-];
+const fallbackTitleByCategory: Record<string, string> = {
+    Portraet: "Portræt",
+    Natur: "Natur",
+};
+
+const fallbackDescriptionByCategory: Record<string, string> = {
+    Portraet: "Udvalgte portrætter med naturligt udtryk",
+    Natur: "Naturbillede med roligt motiv",
+};
+
+const featuredWorks = galleryImages
+    .filter((image) => image.featured)
+    .map((image) => ({
+        id: image.id,
+        imageSrc: image.src,
+        alt: image.alt,
+        title: image.featuredTitle ?? fallbackTitleByCategory[image.category] ?? image.category,
+        description:
+            image.featuredDescription ??
+            fallbackDescriptionByCategory[image.category] ??
+            image.alt,
+    }));
 
 export default function FeaturedWork() {
     return (

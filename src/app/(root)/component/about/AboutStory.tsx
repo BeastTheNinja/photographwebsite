@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import portraitImage from '../../../../../public/MorSelfie.jpg';
+import portraitImage from '../../../../../public/portrait/MorSelfie.jpg';
 
 const values = [
     'Tryg og rolig stemning foran kameraet',
