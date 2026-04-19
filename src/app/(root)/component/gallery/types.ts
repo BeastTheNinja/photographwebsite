@@ -3,4 +3,7 @@ export interface GalleryImage {
     src: string;
     alt: string;
     category: string;
+    featured?: boolean;
+    featuredTitle?: string;
+    featuredDescription?: string;
 }

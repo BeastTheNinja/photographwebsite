@@ -76,6 +76,7 @@ const nextConfig: NextConfig = {
   reactCompiler: true,
   poweredByHeader: false,
   images: {
+    qualities: [70, 75],
     remotePatterns: [
       {
         protocol: "https",
@@ -86,6 +87,26 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [
+      {
+        source: "/api/:path*",
+        headers: [
+          ...securityHeaders,
+          {
+            key: "Cache-Control",
+            value: "no-store, max-age=0",
+          },
+        ],
+      },
+      {
+        source: "/((?!api|_next/static|_next/image|.*\\..*).*)",
+        headers: [
+          ...securityHeaders,
+          {
+            key: "Cache-Control",
+            value: "public, s-maxage=600, stale-while-revalidate=86400",
+          },
+        ],
+      },
       {
         source: "/:path*",
         headers: securityHeaders,
