@@ -1,9 +1,7 @@
-'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
 import type { NavItem } from './navbar';
+import MobileMenu from './mobile-menu';
 
 const LOGO_BLUR_DATA_URL =
     'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMjAwIDEwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+PHN0b3Agc3RvcC1jb2xvcj0iI2U3ZTVlMSIgb2Zmc2V0PSIwIi8+PHN0b3Agc3RvcC1jb2xvcj0iI2NiZDVlMSIgb2Zmc2V0PSIxIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNnKSIgeD0iMCIgeT0iMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxMDAiLz48L3N2Zz4=';
@@ -15,7 +13,6 @@ type HeaderProps = {
 };
 
 export function Header({ logoUrl, title, navItems }: HeaderProps) {
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const bookingItem = navItems.find((item) => item.href === '/book') ?? { href: '/book', label: 'Booking' };
     const desktopNavItems = navItems.filter((item) => item.href !== bookingItem.href);
 
@@ -66,51 +63,9 @@ export function Header({ logoUrl, title, navItems }: HeaderProps) {
                             <span className="hidden sm:inline">{bookingItem.label}</span>
                             <span className="sm:hidden">Book</span>
                         </Link>
-
-                        <button
-                            type="button"
-                            className="inline-flex items-center justify-center rounded-lg p-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
-                            onClick={() => setMobileMenuOpen((prev) => !prev)}
-                            aria-label="Skift menu"
-                            aria-expanded={mobileMenuOpen}
-                            aria-controls="mobile-nav"
-                        >
-                            <svg
-                                className="h-5 w-5 text-gray-700 dark:text-gray-300"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                aria-hidden="true"
-                                focusable="false"
-                            >
-                                {mobileMenuOpen ? (
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                ) : (
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                                )}
-                            </svg>
-                        </button>
+                        <MobileMenu items={desktopNavItems} />
                     </div>
                 </div>
-
-                {mobileMenuOpen && (
-                    <nav
-                        id="mobile-nav"
-                        className="absolute left-2 right-2 top-full mt-2 rounded-2xl border border-gray-200 bg-white/95 p-4 shadow-xl backdrop-blur-md sm:left-auto sm:right-6 sm:w-64 dark:border-gray-700 dark:bg-gray-900/95"
-                        aria-label="Hovednavigation"
-                    >
-                        {desktopNavItems.map((item) => (
-                            <Link
-                                key={item.href}
-                                href={item.href}
-                                className="block rounded-lg px-3 py-2 text-base text-gray-700 transition-colors hover:bg-gray-100 hover:text-indigo-600 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-indigo-400"
-                                onClick={() => setMobileMenuOpen(false)}
-                            >
-                                {item.label}
-                            </Link>
-                        ))}
-                    </nav>
-                )}
             </div>
         </header>
     );
