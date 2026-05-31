@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
-import ContactInfoItem from '../component/contact/ContactInfoItem';
-import ContactCTA from '../component/contact/ContactCTA';
-import SocialLinks from '../component/contact/SocialLinks';
-import FinalCTA from '../component/contact/FinalCTA';
+import ContactInfoItem from '../../../features/contact/ContactInfoItem';
+import ContactCTA from '../../../features/contact/ContactCTA';
+import SocialLinks from '../../../features/contact/SocialLinks';
+import FinalCTA from '../../../features/contact/FinalCTA';
 import {
   EmailIcon,
   PhoneIcon,
@@ -10,7 +10,7 @@ import {
   ClockIcon,
   TikTokIcon,
   FacebookIcon,
-} from '../component/contact/icons';
+} from '../../../components/contact/icons';
 
 export const metadata: Metadata = {
   title: 'Kontakt',

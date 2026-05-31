@@ -1,32 +1,18 @@
 import type { NextConfig } from "next";
-import nextPWA from "next-pwa";
-
-const isDev = process.env.NODE_ENV !== "production";
-
-const withPWA = nextPWA({
-  dest: "public",
-  disable: isDev,
-  register: true,
-  skipWaiting: true,
-  fallbacks: {
-    document: "/offline",
-  },
-  buildExcludes: [/\.(jpe?g|png|gif|webp|avif|ico|bmp|svg)(\?.*)?$/i],
-});
 
 const contentSecurityPolicy = [
   "default-src 'self'",
   "worker-src 'self'",
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://va.vercel-scripts.com`,
+  `script-src 'self' 'unsafe-inline'${process.env.NODE_ENV !== "production" ? " 'unsafe-eval'" : ""} https://va.vercel-scripts.com`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https:",
   "font-src 'self' data:",
-  `connect-src 'self'${isDev ? " ws: wss:" : ""} https://vitals.vercel-insights.com https://*.vercel-insights.com https://va.vercel-scripts.com`,
+  `connect-src 'self'${process.env.NODE_ENV !== "production" ? " ws: wss:" : ""} https://vitals.vercel-insights.com https://*.vercel-insights.com https://va.vercel-scripts.com`,
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",
   "object-src 'none'",
-  ...(!isDev ? ["upgrade-insecure-requests"] : []),
+  ...(process.env.NODE_ENV !== "production" ? [] : ["upgrade-insecure-requests"]),
 ].join("; ");
 
 const securityHeaders = [
@@ -62,7 +48,7 @@ const securityHeaders = [
     key: "X-DNS-Prefetch-Control",
     value: "on",
   },
-  ...(!isDev
+  ...(process.env.NODE_ENV !== "production"
     ? [
       {
         key: "Strict-Transport-Security",
@@ -115,4 +101,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withPWA(nextConfig);
+export default nextConfig;

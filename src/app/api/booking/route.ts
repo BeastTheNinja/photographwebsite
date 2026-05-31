@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer';
 import { NextResponse } from 'next/server';
-import type { BookingFormData } from '@/app/(root)/component/booking/types';
+import type { BookingFormData } from '../../../features/booking/types';
 
 const photographerEmail = 'dinfotografannika@gmail.com';
 const rateLimitStore = new Map<string, { count: number; resetAt: number }>();

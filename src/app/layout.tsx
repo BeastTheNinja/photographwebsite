@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import Script from "next/script";
 import { getSiteUrl } from "./lib/siteUrl";
 import "./globals.css";
 
@@ -7,6 +8,7 @@ const siteName = "DinFotografAnninka";
 const siteDescription =
   "Fotograf i Brønderslev, Nordjylland. Specialiseret i portrætter, familiefotografering, bryllupsfotografering, naturfotografering og konfirmationsfotografering.";
 const siteUrl = getSiteUrl();
+const themeInitScript = `(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark');}}catch(e){}})();`;
 
 function getMetadataBase() {
   return new URL(siteUrl);
@@ -120,7 +122,6 @@ export const metadata: Metadata = {
     apple: "/icons/apple-touch-icon.png",
     shortcut: "/icons/favicon-32x32.png",
   },
-  manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({
@@ -135,17 +136,10 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark');}}catch(e){}})();`,
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(structuredData),
-          }}
-        />
+        <Script id="theme-init" strategy="beforeInteractive">
+          {themeInitScript}
+        </Script>
+        <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </head>
       <body className="min-h-full flex flex-col">
         <a href="#main-content" className="skip-link">

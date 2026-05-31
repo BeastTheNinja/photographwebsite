@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
-import { Header } from "./component/header";
+import { Header } from '../../components/layout/header';
 import LogoImage from "../../../public/icons/MorsLogo.png";
-import { Footer } from "./component/footer";
-import PerformanceInsights from './component/PerformanceInsights';
+import { Footer } from '../../components/layout/footer';
+import PerformanceInsights from '../../components/layout/performance-insights';
 
 export const dynamic = 'force-static';
 
