@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { NavBar } from '../navigation/navbar';
-import type { NavItem } from '../navigation/navbar';
-import MobileMenu from '../navigation/mobile-menu';
+import { NavBar } from "@/components/navigation/navbar";
+import type { NavItem } from "@/components/navigation/navbar";
+import MobileMenu from "@/components/navigation/mobile-menu";
 
 const LOGO_BLUR_DATA_URL =
     'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMjAwIDEwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+PHN0b3Agc3RvcC1jb2xvcj0iI2U3ZTVlMSIgb2Zmc2V0PSIwIi8+PHN0b3Agc3RvcC1jb2xvcj0iI2NiZDVlMSIgb2Zmc2V0PSIxIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNnKSIgeD0iMCIgeT0iMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxMDAiLz48L3N2Zz4=';

@@ -1,40 +1,22 @@
 import nodemailer from 'nodemailer';
 import { NextResponse } from 'next/server';
-import type { BookingFormData } from '../../../features/booking/types';
+import type { BookingFormData } from '@/features/booking/types';
+import { defaultAllowedOrigins, defaultBookingRateLimit, photographerEmail } from '@/lib/config';
+import { createRateLimitOptions, isRateLimited } from '@/lib/rateLimit';
 
-const photographerEmail = 'dinfotografannika@gmail.com';
-const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
+function getRateLimitOptions() {
+    const limit = Number(process.env.BOOKING_RATE_LIMIT_MAX ?? defaultBookingRateLimit.limit);
+    const windowMs = Number(process.env.BOOKING_RATE_LIMIT_WINDOW_MS ?? defaultBookingRateLimit.windowMs);
+    const maxEntries = Number(process.env.BOOKING_RATE_LIMIT_MAX_ENTRIES ?? defaultBookingRateLimit.maxEntries);
+
+    return createRateLimitOptions({ limit, windowMs, maxEntries });
+}
 
 function getClientIp(request: Request) {
     const forwardedFor = request.headers.get('x-forwarded-for');
     const realIp = request.headers.get('x-real-ip');
     const ip = forwardedFor?.split(',')[0]?.trim() || realIp?.trim() || 'unknown';
     return ip;
-}
-
-function isRateLimited(ip: string) {
-    const limit = Number(process.env.BOOKING_RATE_LIMIT_MAX ?? 5);
-    const windowMs = Number(process.env.BOOKING_RATE_LIMIT_WINDOW_MS ?? 10 * 60 * 1000);
-
-    if (!Number.isFinite(limit) || !Number.isFinite(windowMs) || limit <= 0 || windowMs <= 0) {
-        return false;
-    }
-
-    const now = Date.now();
-    const existing = rateLimitStore.get(ip);
-
-    if (!existing || existing.resetAt <= now) {
-        rateLimitStore.set(ip, { count: 1, resetAt: now + windowMs });
-        return false;
-    }
-
-    if (existing.count >= limit) {
-        return true;
-    }
-
-    existing.count += 1;
-    rateLimitStore.set(ip, existing);
-    return false;
 }
 
 function normalizeText(value: string, maxLength: number) {
@@ -88,18 +70,6 @@ function validateBookingData(formData: BookingFormData) {
     return null;
 }
 
-function shouldPruneRateLimitStore(now: number) {
-    return rateLimitStore.size > 500;
-}
-
-function pruneRateLimitStore(now: number) {
-    for (const [key, value] of rateLimitStore.entries()) {
-        if (value.resetAt <= now) {
-            rateLimitStore.delete(key);
-        }
-    }
-}
-
 function getAllowedOrigins() {
     const configured = (process.env.ALLOWED_ORIGINS ?? '')
         .split(',')
@@ -110,7 +80,7 @@ function getAllowedOrigins() {
     const vercelUrl = (process.env.VERCEL_URL ?? '').trim();
     const previewUrl = vercelUrl ? `https://${vercelUrl}` : '';
 
-    return Array.from(new Set([...configured, primarySiteUrl, previewUrl, 'http://localhost:3000'].filter(Boolean)));
+    return Array.from(new Set([...configured, primarySiteUrl, previewUrl, ...defaultAllowedOrigins].filter(Boolean)));
 }
 
 function isAllowedOrigin(origin: string | null) {
@@ -222,12 +192,9 @@ export async function POST(request: Request) {
         return jsonWithCors({ error: 'CORS policy blocked this origin.' }, { status: 403 }, origin);
     }
 
-    const now = Date.now();
-    if (shouldPruneRateLimitStore(now)) {
-        pruneRateLimitStore(now);
-    }
+    const rateLimitOptions = getRateLimitOptions();
 
-    if (isRateLimited(clientIp)) {
+    if (isRateLimited(clientIp, rateLimitOptions)) {
         return jsonWithCors(
             { error: 'For mange forsøg. Vent lidt og prøv igen.' },
             { status: 429, headers: { 'Retry-After': '600' } },

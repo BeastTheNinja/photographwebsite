@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
-import AboutHero from '../../../features/about/AboutHero';
-import AboutStory from '../../../features/about/AboutStory';
-import AboutFocus from '../../../features/about/AboutFocus';
-import AboutProcess from '../../../features/about/AboutProcess';
-import AboutCTA from '../../../features/about/AboutCTA';
+import AboutHero from "@/features/about/AboutHero";
+import AboutStory from "@/features/about/AboutStory";
+import AboutFocus from "@/features/about/AboutFocus";
+import AboutProcess from "@/features/about/AboutProcess";
+import AboutCTA from "@/features/about/AboutCTA";
 
 export const metadata: Metadata = {
     title: 'Om mig',

@@ -1,8 +1,8 @@
 import type { ChangeEvent, FormEvent } from 'react';
 import { memo } from 'react';
-import SelectField from '../../components/form/SelectField';
-import TextField from '../../components/form/TextField';
-import TextareaField from '../../components/form/TextareaField';
+import SelectField from "@/components/form/SelectField";
+import TextField from "@/components/form/TextField";
+import TextareaField from "@/components/form/TextareaField";
 import { bookingOptions, type BookingFormData } from './types';
 
 type FieldErrors = Partial<Record<keyof BookingFormData, string>>;

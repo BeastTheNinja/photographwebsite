@@ -1,9 +1,79 @@
 import type { NextConfig } from "next";
+import crypto from "node:crypto";
+
+const siteName = "DinFotografAnninka";
+const siteDescription =
+  "Fotograf i Brønderslev, Nordjylland. Specialiseret i portrætter, familiefotografering, bryllupsfotografering, naturfotografering og konfirmationsfotografering.";
+const themeInitScript = `(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark');}}catch(e){}})();`;
+
+function getSiteUrl() {
+  const configured = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+
+  if (configured) {
+    return configured.replace(/\/$/, "");
+  }
+
+  const vercelUrl = process.env.VERCEL_URL?.trim();
+  if (vercelUrl) {
+    const url = /^https?:\/\//i.test(vercelUrl) ? vercelUrl : `https://${vercelUrl}`;
+    return url.replace(/\/$/, "");
+  }
+
+  return "http://localhost:3000";
+}
+
+function getStructuredData(siteUrl: string) {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ProfessionalService",
+        "@id": `${siteUrl}#business`,
+        name: siteName,
+        description: siteDescription,
+        url: siteUrl,
+        image: `${siteUrl}/icons/android-chrome-512x512.png`,
+        areaServed: "Brønderslev, Nordjylland",
+        serviceType: [
+          "Portrætfotografering",
+          "Familiefotografering",
+          "Bryllupsfotografering",
+          "Naturfotografering",
+          "Konfirmationsfotografering",
+        ],
+        sameAs: [
+          "https://www.tiktok.com/@annikalarsen81",
+          "https://www.facebook.com/Annika81larsen",
+        ],
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${siteUrl}#website`,
+        url: siteUrl,
+        name: siteName,
+        description: siteDescription,
+        publisher: {
+          "@id": `${siteUrl}#business`,
+        },
+      },
+    ],
+  };
+}
+
+const siteUrl = getSiteUrl();
+const structuredData = JSON.stringify(getStructuredData(siteUrl));
+
+function sha256(content: string) {
+  return `'sha256-${crypto.createHash("sha256").update(content).digest("base64")}'`;
+}
+
+const themeScriptHash = sha256(themeInitScript);
+const structuredDataHash = sha256(structuredData);
 
 const contentSecurityPolicy = [
   "default-src 'self'",
   "worker-src 'self'",
-  `script-src 'self' 'unsafe-inline'${process.env.NODE_ENV !== "production" ? " 'unsafe-eval'" : ""} https://va.vercel-scripts.com`,
+  `script-src 'self' ${themeScriptHash} ${structuredDataHash}${process.env.NODE_ENV !== "production" ? " 'unsafe-eval'" : ""} https://va.vercel-scripts.com`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https:",
   "font-src 'self' data:",
@@ -48,7 +118,7 @@ const securityHeaders = [
     key: "X-DNS-Prefetch-Control",
     value: "on",
   },
-  ...(process.env.NODE_ENV !== "production"
+  ...(process.env.NODE_ENV === "production"
     ? [
       {
         key: "Strict-Transport-Security",

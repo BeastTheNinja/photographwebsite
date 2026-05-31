@@ -1,54 +1,17 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import Script from "next/script";
-import { getSiteUrl } from "./lib/siteUrl";
+import { siteDescription, siteName } from "@/lib/config";
+import { getStructuredData, themeInitScript } from "@/lib/siteData";
+import { getSiteUrl } from "@/app/lib/siteUrl";
 import "./globals.css";
 
-const siteName = "DinFotografAnninka";
-const siteDescription =
-  "Fotograf i Brønderslev, Nordjylland. Specialiseret i portrætter, familiefotografering, bryllupsfotografering, naturfotografering og konfirmationsfotografering.";
 const siteUrl = getSiteUrl();
-const themeInitScript = `(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark');}}catch(e){}})();`;
 
 function getMetadataBase() {
   return new URL(siteUrl);
 }
-
-const structuredData = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "ProfessionalService",
-      "@id": `${siteUrl}#business`,
-      name: siteName,
-      description: siteDescription,
-      url: siteUrl,
-      image: `${siteUrl}/icons/android-chrome-512x512.png`,
-      areaServed: "Brønderslev, Nordjylland",
-      serviceType: [
-        "Portrætfotografering",
-        "Familiefotografering",
-        "Bryllupsfotografering",
-        "Naturfotografering",
-        "Konfirmationsfotografering",
-      ],
-      sameAs: [
-        "https://www.tiktok.com/@annikalarsen81",
-        "https://www.facebook.com/Annika81larsen",
-      ],
-    },
-    {
-      "@type": "WebSite",
-      "@id": `${siteUrl}#website`,
-      url: siteUrl,
-      name: siteName,
-      description: siteDescription,
-      publisher: {
-        "@id": `${siteUrl}#business`,
-      },
-    },
-  ],
-};
+const structuredData = getStructuredData(siteUrl);
 
 export const viewport: Viewport = {
   width: "device-width",

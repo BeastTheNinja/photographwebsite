@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
-import HeroSection from '../../features/home/HeroSection';
+import HeroSection from "@/features/home/HeroSection";
 import HomeSecondarySections from './HomeSecondarySections';
 
 export const metadata: Metadata = {

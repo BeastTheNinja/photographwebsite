@@ -3,7 +3,7 @@ import ContactInfoItem from './ContactInfoItem';
 import ContactCTA from './ContactCTA';
 import SocialLinks from './SocialLinks';
 import FinalCTA from './FinalCTA';
-import { EmailIcon, PhoneIcon, MapPinIcon, ClockIcon, TikTokIcon, FacebookIcon } from '../../components/contact/icons';
+import { EmailIcon, PhoneIcon, MapPinIcon, ClockIcon, TikTokIcon, FacebookIcon } from "@/components/contact/icons";
 
 export const metadata: Metadata = {
     title: 'Kontakt',

@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import LogoImage from '../../../public/icons/MorsLogo.png';
 
 const HERO_BLUR_DATA_URL = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiIHZpZXdCb3g9IjAgMCAxOTIwIDEwODAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPjxzdG9wIHN0b3AtY29sb3I9IiMyNzI3MmEiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiMxODE4MWIiIG9mZnNldD0iMSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IGZpbGw9InVybCgjZykiIHg9IjAiIHk9IjAiIHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiLz48L3N2Zz4=';
 
@@ -8,7 +7,7 @@ export default function HeroSection() {
     return (
         <section className="relative flex min-h-96 items-center justify-center overflow-hidden sm:min-h-144 md:min-h-160 lg:h-175">
             <div className="absolute inset-0">
-                <Image src={LogoImage} alt="" fill sizes="100vw" quality={70} fetchPriority="high" decoding="async" placeholder="blur" blurDataURL={HERO_BLUR_DATA_URL} className="object-cover" priority />
+                <Image src="/icons/MorsLogo.png" alt="" fill sizes="100vw" quality={70} fetchPriority="high" decoding="async" placeholder="blur" blurDataURL={HERO_BLUR_DATA_URL} className="object-cover" priority />
                 <div className="absolute inset-0 bg-linear-to-br from-black/60 via-black/50 to-purple-900/40" />
             </div>
             <div className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto">

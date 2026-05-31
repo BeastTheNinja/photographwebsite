@@ -1,5 +1,5 @@
 import WorkCard from './WorkCard';
-import { galleryImages } from '../gallery/galleryData';
+import { galleryImages } from "@/features/gallery/galleryData";
 
 const fallbackTitleByCategory: Record<string, string> = { Portraet: 'Portræt', Natur: 'Natur' };
 const fallbackDescriptionByCategory: Record<string, string> = { Portraet: 'Udvalgte portrætter med naturligt udtryk', Natur: 'Naturbillede med roligt motiv' };

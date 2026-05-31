@@ -1,8 +1,7 @@
 import type { ReactNode } from 'react';
-import { Header } from '../../components/layout/header';
-import LogoImage from "../../../public/icons/MorsLogo.png";
-import { Footer } from '../../components/layout/footer';
-import PerformanceInsights from '../../components/layout/performance-insights';
+import { Header } from "@/components/layout/header";
+import { Footer } from "@/components/layout/footer";
+import PerformanceInsights from "@/components/layout/performance-insights";
 
 export const dynamic = 'force-static';
 
@@ -19,7 +18,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
     return (
         <div className="flex min-h-screen flex-col">
             <Header
-                logoUrl={LogoImage.src}
+                logoUrl="/icons/MorsLogo.png"
                 title="DinFotografAnninka"
                 navItems={navItems}
             />

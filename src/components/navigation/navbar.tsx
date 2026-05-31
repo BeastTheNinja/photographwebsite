@@ -1,4 +1,4 @@
-import { NavLink } from "./navlink";
+import { NavLink } from "@/components/navigation/navlink";
 
 export type NavItem = {
     href: string;

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FacebookIcon, TikTokIcon } from '../contact/icons';
+import { FacebookIcon, TikTokIcon } from "@/components/contact/icons";
 
 export function Footer() {
     return (

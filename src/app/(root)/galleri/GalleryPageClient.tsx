@@ -1,11 +1,11 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import GalleryCategoryFilter from '../../../features/gallery/GalleryCategoryFilter';
-import { galleryCategories, galleryImages } from '../../../features/gallery/galleryData';
-import GalleryGrid from '../../../features/gallery/GalleryGrid';
-import GalleryLightbox from '../../../features/gallery/GalleryLightbox';
-import type { GalleryImage } from '../../../features/gallery/types';
+import GalleryCategoryFilter from "@/features/gallery/GalleryCategoryFilter";
+import { galleryCategories, galleryImages } from "@/features/gallery/galleryData";
+import GalleryGrid from "@/features/gallery/GalleryGrid";
+import GalleryLightbox from "@/features/gallery/GalleryLightbox";
+import type { GalleryImage } from "@/features/gallery/types";
 
 export default function GalleryPageClient() {
     const [selectedCategory, setSelectedCategory] = useState('Alle');
