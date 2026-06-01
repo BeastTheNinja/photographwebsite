@@ -70,31 +70,47 @@ function validateBookingData(formData: BookingFormData) {
     return null;
 }
 
-function getAllowedOrigins() {
+function getConfiguredAllowedOrigins() {
     const configured = (process.env.ALLOWED_ORIGINS ?? '')
         .split(',')
         .map((origin) => origin.trim())
         .filter(Boolean);
 
     const primarySiteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? '').trim().replace(/\/$/, '');
-    const vercelUrl = (process.env.VERCEL_URL ?? '').trim();
-    const previewUrl = vercelUrl ? `https://${vercelUrl}` : '';
 
-    return Array.from(new Set([...configured, primarySiteUrl, previewUrl, ...defaultAllowedOrigins].filter(Boolean)));
+    return Array.from(new Set([...configured, primarySiteUrl, ...defaultAllowedOrigins].filter(Boolean)));
 }
 
-function isAllowedOrigin(origin: string | null) {
+function getRequestOrigin(request: Request) {
+    const forwardedHost = request.headers.get('x-forwarded-host')?.split(',')[0]?.trim();
+    const host = request.headers.get('host')?.trim();
+    const proto = request.headers.get('x-forwarded-proto')?.split(',')[0]?.trim() ?? new URL(request.url).protocol.replace(':', '');
+    const requestHost = forwardedHost || host;
+
+    if (!requestHost) {
+        return null;
+    }
+
+    return `${proto}://${requestHost}`;
+}
+
+function isAllowedOrigin(request: Request, origin: string | null) {
     if (!origin) {
         return true;
     }
 
-    return getAllowedOrigins().includes(origin);
+    if (getConfiguredAllowedOrigins().includes(origin)) {
+        return true;
+    }
+
+    const requestOrigin = getRequestOrigin(request);
+    return requestOrigin === origin;
 }
 
-function getCorsHeaders(origin: string | null) {
+function getCorsHeaders(request: Request, origin: string | null) {
     const headers = new Headers();
 
-    if (origin && isAllowedOrigin(origin)) {
+    if (origin && isAllowedOrigin(request, origin)) {
         headers.set('Access-Control-Allow-Origin', origin);
         headers.set('Vary', 'Origin');
     }
@@ -105,9 +121,9 @@ function getCorsHeaders(origin: string | null) {
     return headers;
 }
 
-function jsonWithCors(body: unknown, init: ResponseInit, origin: string | null) {
+function jsonWithCors(request: Request, body: unknown, init: ResponseInit, origin: string | null) {
     const response = NextResponse.json(body, init);
-    const headers = getCorsHeaders(origin);
+    const headers = getCorsHeaders(request, origin);
 
     headers.forEach((value, key) => {
         response.headers.set(key, value);
@@ -174,13 +190,13 @@ function buildCustomerMessage(formData: BookingFormData) {
 export async function OPTIONS(request: Request) {
     const origin = request.headers.get('origin');
 
-    if (origin && !isAllowedOrigin(origin)) {
+    if (origin && !isAllowedOrigin(request, origin)) {
         return new NextResponse(null, { status: 403 });
     }
 
     return new NextResponse(null, {
         status: 204,
-        headers: getCorsHeaders(origin),
+        headers: getCorsHeaders(request, origin),
     });
 }
 
@@ -188,14 +204,15 @@ export async function POST(request: Request) {
     const origin = request.headers.get('origin');
     const clientIp = getClientIp(request);
 
-    if (origin && !isAllowedOrigin(origin)) {
-        return jsonWithCors({ error: 'CORS policy blocked this origin.' }, { status: 403 }, origin);
+    if (origin && !isAllowedOrigin(request, origin)) {
+        return jsonWithCors(request, { error: 'CORS policy blocked this origin.' }, { status: 403 }, origin);
     }
 
     const rateLimitOptions = getRateLimitOptions();
 
     if (isRateLimited(clientIp, rateLimitOptions)) {
         return jsonWithCors(
+            request,
             { error: 'For mange forsøg. Vent lidt og prøv igen.' },
             { status: 429, headers: { 'Retry-After': '600' } },
             origin,
@@ -208,7 +225,7 @@ export async function POST(request: Request) {
         const validationError = validateBookingData(formData);
 
         if (validationError) {
-            return jsonWithCors({ error: validationError }, { status: 400 }, origin);
+            return jsonWithCors(request, { error: validationError }, { status: 400 }, origin);
         }
 
         const transporter = createTransporter();
@@ -229,11 +246,12 @@ export async function POST(request: Request) {
             text: buildCustomerMessage(formData),
         });
 
-        return jsonWithCors({ ok: true }, { status: 200 }, origin);
+        return jsonWithCors(request, { ok: true }, { status: 200 }, origin);
     } catch (error) {
         const rawMessage = error instanceof Error ? error.message : String(error);
         console.error('[booking] email send failed:', rawMessage);
         return jsonWithCors(
+            request,
             { error: 'Der opstod en fejl ved afsendelse af mail. Prøv venligst igen senere.' },
             { status: 500 },
             origin,
