@@ -2,15 +2,15 @@
 
 import type { ChangeEvent, FormEvent } from 'react';
 import { useCallback, useState } from 'react';
-import BookingForm from '../component/booking/BookingForm';
-import BookingHero from '../component/booking/BookingHero';
-import BookingServiceCards from '../component/booking/BookingServiceCards';
-import BookingSuccess from '../component/booking/BookingSuccess';
+import BookingForm from "@/features/booking/BookingForm";
+import BookingHero from "@/features/booking/BookingHero";
+import BookingServiceCards from "@/features/booking/BookingServiceCards";
+import BookingSuccess from "@/features/booking/BookingSuccess";
 import {
     initialBookingFormData,
     sessionTypes,
     type BookingFormData,
-} from '../component/booking/types';
+} from "@/features/booking/types";
 
 type FieldErrors = Partial<Record<keyof BookingFormData, string>>;
 

@@ -1,40 +1,22 @@
 import nodemailer from 'nodemailer';
 import { NextResponse } from 'next/server';
-import type { BookingFormData } from '@/app/(root)/component/booking/types';
+import type { BookingFormData } from '@/features/booking/types';
+import { defaultAllowedOrigins, defaultBookingRateLimit, photographerEmail } from '@/lib/config';
+import { createRateLimitOptions, isRateLimited } from '@/lib/rateLimit';
 
-const photographerEmail = 'dinfotografannika@gmail.com';
-const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
+function getRateLimitOptions() {
+    const limit = Number(process.env.BOOKING_RATE_LIMIT_MAX ?? defaultBookingRateLimit.limit);
+    const windowMs = Number(process.env.BOOKING_RATE_LIMIT_WINDOW_MS ?? defaultBookingRateLimit.windowMs);
+    const maxEntries = Number(process.env.BOOKING_RATE_LIMIT_MAX_ENTRIES ?? defaultBookingRateLimit.maxEntries);
+
+    return createRateLimitOptions({ limit, windowMs, maxEntries });
+}
 
 function getClientIp(request: Request) {
     const forwardedFor = request.headers.get('x-forwarded-for');
     const realIp = request.headers.get('x-real-ip');
     const ip = forwardedFor?.split(',')[0]?.trim() || realIp?.trim() || 'unknown';
     return ip;
-}
-
-function isRateLimited(ip: string) {
-    const limit = Number(process.env.BOOKING_RATE_LIMIT_MAX ?? 5);
-    const windowMs = Number(process.env.BOOKING_RATE_LIMIT_WINDOW_MS ?? 10 * 60 * 1000);
-
-    if (!Number.isFinite(limit) || !Number.isFinite(windowMs) || limit <= 0 || windowMs <= 0) {
-        return false;
-    }
-
-    const now = Date.now();
-    const existing = rateLimitStore.get(ip);
-
-    if (!existing || existing.resetAt <= now) {
-        rateLimitStore.set(ip, { count: 1, resetAt: now + windowMs });
-        return false;
-    }
-
-    if (existing.count >= limit) {
-        return true;
-    }
-
-    existing.count += 1;
-    rateLimitStore.set(ip, existing);
-    return false;
 }
 
 function normalizeText(value: string, maxLength: number) {
@@ -88,43 +70,47 @@ function validateBookingData(formData: BookingFormData) {
     return null;
 }
 
-function shouldPruneRateLimitStore(now: number) {
-    return rateLimitStore.size > 500;
-}
-
-function pruneRateLimitStore(now: number) {
-    for (const [key, value] of rateLimitStore.entries()) {
-        if (value.resetAt <= now) {
-            rateLimitStore.delete(key);
-        }
-    }
-}
-
-function getAllowedOrigins() {
+function getConfiguredAllowedOrigins() {
     const configured = (process.env.ALLOWED_ORIGINS ?? '')
         .split(',')
         .map((origin) => origin.trim())
         .filter(Boolean);
 
     const primarySiteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? '').trim().replace(/\/$/, '');
-    const vercelUrl = (process.env.VERCEL_URL ?? '').trim();
-    const previewUrl = vercelUrl ? `https://${vercelUrl}` : '';
 
-    return Array.from(new Set([...configured, primarySiteUrl, previewUrl, 'http://localhost:3000'].filter(Boolean)));
+    return Array.from(new Set([...configured, primarySiteUrl, ...defaultAllowedOrigins].filter(Boolean)));
 }
 
-function isAllowedOrigin(origin: string | null) {
+function getRequestOrigin(request: Request) {
+    const forwardedHost = request.headers.get('x-forwarded-host')?.split(',')[0]?.trim();
+    const host = request.headers.get('host')?.trim();
+    const proto = request.headers.get('x-forwarded-proto')?.split(',')[0]?.trim() ?? new URL(request.url).protocol.replace(':', '');
+    const requestHost = forwardedHost || host;
+
+    if (!requestHost) {
+        return null;
+    }
+
+    return `${proto}://${requestHost}`;
+}
+
+function isAllowedOrigin(request: Request, origin: string | null) {
     if (!origin) {
         return true;
     }
 
-    return getAllowedOrigins().includes(origin);
+    if (getConfiguredAllowedOrigins().includes(origin)) {
+        return true;
+    }
+
+    const requestOrigin = getRequestOrigin(request);
+    return requestOrigin === origin;
 }
 
-function getCorsHeaders(origin: string | null) {
+function getCorsHeaders(request: Request, origin: string | null) {
     const headers = new Headers();
 
-    if (origin && isAllowedOrigin(origin)) {
+    if (origin && isAllowedOrigin(request, origin)) {
         headers.set('Access-Control-Allow-Origin', origin);
         headers.set('Vary', 'Origin');
     }
@@ -135,9 +121,9 @@ function getCorsHeaders(origin: string | null) {
     return headers;
 }
 
-function jsonWithCors(body: unknown, init: ResponseInit, origin: string | null) {
+function jsonWithCors(request: Request, body: unknown, init: ResponseInit, origin: string | null) {
     const response = NextResponse.json(body, init);
-    const headers = getCorsHeaders(origin);
+    const headers = getCorsHeaders(request, origin);
 
     headers.forEach((value, key) => {
         response.headers.set(key, value);
@@ -204,13 +190,13 @@ function buildCustomerMessage(formData: BookingFormData) {
 export async function OPTIONS(request: Request) {
     const origin = request.headers.get('origin');
 
-    if (origin && !isAllowedOrigin(origin)) {
+    if (origin && !isAllowedOrigin(request, origin)) {
         return new NextResponse(null, { status: 403 });
     }
 
     return new NextResponse(null, {
         status: 204,
-        headers: getCorsHeaders(origin),
+        headers: getCorsHeaders(request, origin),
     });
 }
 
@@ -218,19 +204,17 @@ export async function POST(request: Request) {
     const origin = request.headers.get('origin');
     const clientIp = getClientIp(request);
 
-    if (origin && !isAllowedOrigin(origin)) {
-        return jsonWithCors({ error: 'CORS policy blocked this origin.' }, { status: 403 }, origin);
+    if (origin && !isAllowedOrigin(request, origin)) {
+        return jsonWithCors(request, { error: 'CORS policy blocked this origin.' }, { status: 403 }, origin);
     }
 
-    const now = Date.now();
-    if (shouldPruneRateLimitStore(now)) {
-        pruneRateLimitStore(now);
-    }
+    const rateLimitOptions = getRateLimitOptions();
 
-    if (isRateLimited(clientIp)) {
+    if (isRateLimited(clientIp, rateLimitOptions)) {
         return jsonWithCors(
+            request,
             { error: 'For mange forsøg. Vent lidt og prøv igen.' },
-            { status: 429, headers: { 'Retry-After': '600' } },
+            { status: 429, headers: { 'Retry-After': String(Math.ceil(rateLimitOptions.windowMs / 1000)) } },
             origin,
         );
     }
@@ -241,7 +225,7 @@ export async function POST(request: Request) {
         const validationError = validateBookingData(formData);
 
         if (validationError) {
-            return jsonWithCors({ error: validationError }, { status: 400 }, origin);
+            return jsonWithCors(request, { error: validationError }, { status: 400 }, origin);
         }
 
         const transporter = createTransporter();
@@ -262,11 +246,12 @@ export async function POST(request: Request) {
             text: buildCustomerMessage(formData),
         });
 
-        return jsonWithCors({ ok: true }, { status: 200 }, origin);
+        return jsonWithCors(request, { ok: true }, { status: 200 }, origin);
     } catch (error) {
         const rawMessage = error instanceof Error ? error.message : String(error);
         console.error('[booking] email send failed:', rawMessage);
         return jsonWithCors(
+            request,
             { error: 'Der opstod en fejl ved afsendelse af mail. Prøv venligst igen senere.' },
             { status: 500 },
             origin,

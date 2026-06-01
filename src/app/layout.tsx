@@ -1,52 +1,19 @@
 import type { Metadata, Viewport } from "next";
+import { headers } from "next/headers";
 import type { ReactNode } from "react";
-import { getSiteUrl } from "./lib/siteUrl";
+import Script from "next/script";
+import { siteDescription, siteName } from "@/lib/config";
+import { getStructuredData } from "@/lib/siteData";
+import { getSiteUrl } from "@/app/lib/siteUrl";
 import "./globals.css";
 
-const siteName = "DinFotografAnninka";
-const siteDescription =
-  "Fotograf i Brønderslev, Nordjylland. Specialiseret i portrætter, familiefotografering, bryllupsfotografering, naturfotografering og konfirmationsfotografering.";
 const siteUrl = getSiteUrl();
 
 function getMetadataBase() {
   return new URL(siteUrl);
 }
-
-const structuredData = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "ProfessionalService",
-      "@id": `${siteUrl}#business`,
-      name: siteName,
-      description: siteDescription,
-      url: siteUrl,
-      image: `${siteUrl}/icons/android-chrome-512x512.png`,
-      areaServed: "Brønderslev, Nordjylland",
-      serviceType: [
-        "Portrætfotografering",
-        "Familiefotografering",
-        "Bryllupsfotografering",
-        "Naturfotografering",
-        "Konfirmationsfotografering",
-      ],
-      sameAs: [
-        "https://www.tiktok.com/@annikalarsen81",
-        "https://www.facebook.com/Annika81larsen",
-      ],
-    },
-    {
-      "@type": "WebSite",
-      "@id": `${siteUrl}#website`,
-      url: siteUrl,
-      name: siteName,
-      description: siteDescription,
-      publisher: {
-        "@id": `${siteUrl}#business`,
-      },
-    },
-  ],
-};
+const structuredData = getStructuredData(siteUrl);
+const jsonLd = JSON.stringify(structuredData);
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -120,14 +87,16 @@ export const metadata: Metadata = {
     apple: "/icons/apple-touch-icon.png",
     shortcut: "/icons/favicon-32x32.png",
   },
-  manifest: "/site.webmanifest",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: ReactNode;
 }>) {
+  const headerList = await headers();
+  const nonce = headerList.get("x-csp-nonce") ?? undefined;
+
   return (
     <html
       lang="da"
@@ -135,17 +104,8 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark');}}catch(e){}})();`,
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(structuredData),
-          }}
-        />
+        <Script nonce={nonce} src="/js/theme-init.js" strategy="beforeInteractive" />
+        <script nonce={nonce} type="application/ld+json">{jsonLd}</script>
       </head>
       <body className="min-h-full flex flex-col">
         <a href="#main-content" className="skip-link">
