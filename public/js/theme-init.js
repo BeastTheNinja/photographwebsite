@@ -1,4 +1,4 @@
-// Theme init script moved out of inline to avoid CSP inline-script requirements.
+// Theme init script moved out oflined to avoid CSP inline-script requirements.
 (function () {
   try {
     var t = localStorage.getItem("theme");
