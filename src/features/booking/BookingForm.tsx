@@ -1,29 +1,50 @@
 import type { ChangeEvent, FormEvent } from 'react';
 import { memo } from 'react';
-import SelectField from "@/components/form/SelectField";
-import TextField from "@/components/form/TextField";
-import TextareaField from "@/components/form/TextareaField";
+
+import SelectField from '@/components/form/SelectField';
+import TextField from '@/components/form/TextField';
+import TextareaField from '@/components/form/TextareaField';
+
 import { bookingOptions, type BookingFormData } from './types';
 
 type FieldErrors = Partial<Record<keyof BookingFormData, string>>;
 
 const sessionTypeOptions = [
     { label: 'Vælg en sessionstype', value: '' },
-    ...bookingOptions.map((option) => ({ label: option, value: option })),
+    ...bookingOptions.map((option) => ({
+        label: option,
+        value: option,
+    })),
 ];
 
 interface BookingFormProps {
     formData: BookingFormData;
     fieldErrors: FieldErrors;
-    onChange: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
+    onChange: (
+        event: ChangeEvent<
+            HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+        >
+    ) => void;
     onSubmit: (event: FormEvent<HTMLFormElement>) => void;
     isSubmitting: boolean;
     errorMessage?: string | null;
 }
 
-function BookingForm({ formData, fieldErrors, onChange, onSubmit, isSubmitting, errorMessage }: BookingFormProps) {
+function BookingForm({
+    formData,
+    fieldErrors,
+    onChange,
+    onSubmit,
+    isSubmitting,
+    errorMessage,
+}: BookingFormProps) {
     return (
-        <form onSubmit={onSubmit} className="rounded-2xl border border-gray-100 bg-white p-4 shadow-xl sm:p-6 md:p-8 lg:p-10 dark:border-zinc-800 dark:bg-zinc-900">
+        <form
+            onSubmit={onSubmit}
+            className="rounded-2xl border border-gray-100 bg-white p-4 shadow-xl sm:p-6 md:p-8 lg:p-10 dark:border-zinc-800 dark:bg-zinc-900"
+        >
+
+            {/* HONEYPOT */}
             <div className="hidden" aria-hidden="true">
                 <label htmlFor="website">Website</label>
                 <input
@@ -37,36 +58,129 @@ function BookingForm({ formData, fieldErrors, onChange, onSubmit, isSubmitting, 
                 />
             </div>
 
+            {/* MAIN FIELDS */}
             <div className="mb-6 grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2">
-                <TextField id="name" name="name" label="Fuldt navn *" value={formData.name} onChange={onChange} placeholder="Dit navn" errorMessage={fieldErrors.name} required />
-                <TextField id="email" name="email" label="E-mail *" type="email" value={formData.email} onChange={onChange} placeholder="dig@email.dk" errorMessage={fieldErrors.email} required />
-                <TextField id="phone" name="phone" label="Telefon *" type="tel" value={formData.phone} onChange={onChange} placeholder="+45 12 34 56 78" errorMessage={fieldErrors.phone} required />
-                <SelectField id="sessionType" name="sessionType" label="Sessionstype *" value={formData.sessionType} onChange={onChange} options={sessionTypeOptions} errorMessage={fieldErrors.sessionType} required />
-                <TextField id="date" name="date" label="Foretrukken dato *" type="date" value={formData.date} onChange={onChange} errorMessage={fieldErrors.date} required />
-                <TextField id="time" name="time" label="Foretrukken tid *" type="time" value={formData.time} onChange={onChange} errorMessage={fieldErrors.time} required />
+
+                <TextField
+                    id="name"
+                    name="name"
+                    label="Fuldt navn *"
+                    value={formData.name}
+                    onChange={onChange}
+                    placeholder="Dit navn"
+                    errorMessage={fieldErrors.name}
+                    required
+                />
+
+                <TextField
+                    id="email"
+                    name="email"
+                    label="E-mail *"
+                    type="email"
+                    value={formData.email}
+                    onChange={onChange}
+                    placeholder="dig@email.dk"
+                    errorMessage={fieldErrors.email}
+                    required
+                />
+
+                <TextField
+                    id="phone"
+                    name="phone"
+                    label="Telefon *"
+                    type="tel"
+                    value={formData.phone}
+                    onChange={onChange}
+                    placeholder="+45 12 34 56 78"
+                    errorMessage={fieldErrors.phone}
+                    required
+                />
+
+                <SelectField
+                    id="sessionType"
+                    name="sessionType"
+                    label="Sessionstype *"
+                    value={formData.sessionType}
+                    onChange={onChange}
+                    options={sessionTypeOptions}
+                    errorMessage={fieldErrors.sessionType}
+                    required
+                />
+
+                <TextField
+                    id="date"
+                    name="date"
+                    label="Foretrukken dato *"
+                    type="date"
+                    value={formData.date}
+                    onChange={onChange}
+                    errorMessage={fieldErrors.date}
+                    required
+                />
+
+                <TextField
+                    id="time"
+                    name="time"
+                    label="Foretrukken tid *"
+                    type="time"
+                    value={formData.time}
+                    onChange={onChange}
+                    errorMessage={fieldErrors.time}
+                    required
+                />
+
             </div>
 
+            {/* LOCATION */}
             <div className="mb-6">
-                <TextField id="location" name="location" label="Foretrukken lokation" value={formData.location} onChange={onChange} placeholder="Fx København, park eller studio" errorMessage={fieldErrors.location} />
+                <TextField
+                    id="location"
+                    name="location"
+                    label="Foretrukken lokation"
+                    value={formData.location}
+                    onChange={onChange}
+                    placeholder="Fx København, park eller studio"
+                    errorMessage={fieldErrors.location}
+                />
             </div>
 
+            {/* MESSAGE */}
             <div className="mb-8">
-                <TextareaField id="message" name="message" label="Fortæl om dine ønsker" value={formData.message} onChange={onChange} placeholder="Skriv eventuelle ønsker, ideer eller spørgsmål" errorMessage={fieldErrors.message} />
+                <TextareaField
+                    id="message"
+                    name="message"
+                    label="Fortæl om dine ønsker"
+                    value={formData.message}
+                    onChange={onChange}
+                    placeholder="Skriv eventuelle ønsker, ideer eller spørgsmål"
+                    errorMessage={fieldErrors.message}
+                />
             </div>
 
-            {errorMessage ? (
-                <div className="mb-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-900 dark:bg-red-950 dark:text-red-200" role="alert" aria-live="polite">
+            {/* ERROR */}
+            {errorMessage && (
+                <div
+                    className="mb-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-900 dark:bg-red-950 dark:text-red-200"
+                    role="alert"
+                    aria-live="polite"
+                >
                     {errorMessage}
                 </div>
-            ) : null}
+            )}
 
-            <button type="submit" disabled={isSubmitting} className="w-full rounded-full bg-linear-to-r from-indigo-600 to-purple-600 px-6 py-3 text-base text-white transition-all hover:scale-[1.02] hover:shadow-2xl disabled:cursor-not-allowed disabled:opacity-70 sm:px-8 sm:py-3.5 md:py-4">
+            {/* SUBMIT */}
+            <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full rounded-full bg-linear-to-r from-indigo-600 to-purple-600 px-6 py-3 text-base text-white transition-all hover:scale-[1.02] hover:shadow-2xl disabled:cursor-not-allowed disabled:opacity-70 sm:px-8 sm:py-3.5 md:py-4"
+            >
                 {isSubmitting ? 'Sender...' : 'Send bookingforespørgsel'}
             </button>
 
-            <p className="text-sm text-gray-500 text-center mt-6">
+            <p className="mt-6 text-center text-sm text-gray-500">
                 * Obligatoriske felter. Jeg kontakter dig inden for 24 timer.
             </p>
+
         </form>
     );
 }

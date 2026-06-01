@@ -50,6 +50,16 @@ export function middleware(req: NextRequest) {
   res.headers.set('Cross-Origin-Resource-Policy', 'same-site');
   res.headers.set('X-DNS-Prefetch-Control', 'on');
 
+  const acceptsHtml = req.headers.get('accept')?.includes('text/html');
+  const isHtmlDocument =
+    acceptsHtml &&
+    !req.nextUrl.pathname.startsWith('/api/') &&
+    !req.nextUrl.pathname.startsWith('/_next/') &&
+    !req.nextUrl.pathname.includes('.');
+  if (isHtmlDocument) {
+    res.headers.set('Cache-Control', 'no-store');
+  }
+
   return res;
 }
 
