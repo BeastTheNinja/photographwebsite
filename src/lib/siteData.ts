@@ -1,7 +1,4 @@
-export const siteName = "DinFotografAnninka";
-
-export const siteDescription =
-    "Fotograf i Brønderslev, Nordjylland. Specialiseret i portrætter, familiefotografering, bryllupsfotografering, naturfotografering og konfirmationsfotografering.";
+import { siteDescription, siteName } from './config';
 
 export function getStructuredData(siteUrl: string) {
     return {

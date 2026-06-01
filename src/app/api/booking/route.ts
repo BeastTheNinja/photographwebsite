@@ -214,7 +214,7 @@ export async function POST(request: Request) {
         return jsonWithCors(
             request,
             { error: 'For mange forsøg. Vent lidt og prøv igen.' },
-            { status: 429, headers: { 'Retry-After': '600' } },
+            { status: 429, headers: { 'Retry-After': String(Math.ceil(rateLimitOptions.windowMs / 1000)) } },
             origin,
         );
     }
