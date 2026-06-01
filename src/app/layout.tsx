@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from "next";
+import { headers } from "next/headers";
 import type { ReactNode } from "react";
 import Script from "next/script";
 import { siteDescription, siteName } from "@/lib/config";
-import { getStructuredData, themeInitScript } from "@/lib/siteData";
+import { getStructuredData } from "@/lib/siteData";
 import { getSiteUrl } from "@/app/lib/siteUrl";
 import "./globals.css";
 
@@ -12,6 +13,7 @@ function getMetadataBase() {
   return new URL(siteUrl);
 }
 const structuredData = getStructuredData(siteUrl);
+const jsonLd = JSON.stringify(structuredData);
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -87,11 +89,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: ReactNode;
 }>) {
+  const headerList = await headers();
+  const nonce = headerList.get("x-csp-nonce") ?? undefined;
+
   return (
     <html
       lang="da"
@@ -99,10 +104,8 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <Script id="theme-init" strategy="beforeInteractive">
-          {themeInitScript}
-        </Script>
-        <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
+        <Script nonce={nonce} src="/js/theme-init.js" strategy="beforeInteractive" />
+        <script nonce={nonce} type="application/ld+json">{jsonLd}</script>
       </head>
       <body className="min-h-full flex flex-col">
         <a href="#main-content" className="skip-link">

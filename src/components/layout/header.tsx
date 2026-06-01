@@ -23,22 +23,20 @@ export function Header({ logoUrl, title, navItems }: HeaderProps) {
                 <div className="flex items-center justify-between gap-2 sm:gap-4">
                     <Link href="/" className="flex min-w-0 items-center gap-2 sm:gap-3">
                         {logoUrl ? (
-                            <div className="relative h-12 w-24 overflow-hidden sm:h-16 sm:w-36 md:h-24 md:w-52">
-                                <Image
-                                    src={logoUrl}
-                                    alt="Logo"
-                                    width={200}
-                                    height={100}
-                                    sizes="(max-width: 640px) 96px, (max-width: 768px) 144px, 208px"
-                                    placeholder="blur"
-                                    blurDataURL={LOGO_BLUR_DATA_URL}
-                                    className="h-12 w-24 object-contain sm:h-16 sm:w-36 md:h-24 md:w-52"
-                                />
-                            </div>
+                            <Image
+                                src={logoUrl}
+                                alt="Logo"
+                                width={200}
+                                height={100}
+                                sizes="(max-width: 640px) 96px, (max-width: 768px) 144px, 208px"
+                                placeholder="blur"
+                                blurDataURL={LOGO_BLUR_DATA_URL}
+                                className="h-12 w-24 object-contain sm:h-16 sm:w-36 md:h-24 md:w-52"
+                            />
                         ) : (
-                            <div className="h-10 w-10 rounded-lg bg-linear-to-br from-indigo-600 via-purple-600 to-pink-500 shadow-lg" />
+                            <div className="h-10 w-10 rounded-lg bg-linear-to-br from-indigo-600 via-purple-600 to-pink-500 shadow-lg ring-1 ring-white/30" />
                         )}
-                        <span className="hidden max-w-32 truncate text-sm tracking-tight text-gray-900 dark:text-white sm:inline sm:max-w-none sm:text-xl">{title}</span>
+                        <span className="hidden max-w-32 truncate bg-linear-to-r from-indigo-700 via-purple-600 to-pink-600 bg-clip-text text-sm font-semibold tracking-tight text-transparent sm:inline sm:max-w-none sm:text-xl dark:from-indigo-200 dark:via-purple-200 dark:to-pink-200">{title}</span>
                     </Link>
 
                     <div className="flex items-center gap-2 sm:gap-3">
